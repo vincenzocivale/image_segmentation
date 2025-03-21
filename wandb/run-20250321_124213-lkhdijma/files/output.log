@@ -194,3 +194,326 @@ outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
 outputs.dtype: torch.float32, masks.dtype: torch.int64
 outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
 outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([3, 5, 64, 64]), masks.shape: torch.Size([3, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+Validation: 100%|██████████| 9/9 [00:01<00:00,  5.61it/s, loss=0.346, IoU=0, Dice=0]
+Epoch 2/50 - Train Loss: 0.5795, IoU: 0.0000, Dice: 0.0000 | Val Loss: 0.3311, IoU: 0.0000, Dice: 0.0000
+Epoch 3/50 [Train]:  26%|██▋       | 15/57 [00:03<00:06,  6.14it/s, loss=0.307, IoU=0, Dice=0]
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([3, 5, 64, 64]), masks.shape: torch.Size([3, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+Validation: 100%|██████████| 9/9 [00:01<00:00,  5.64it/s, loss=0.164, IoU=0, Dice=0]
+Epoch 3/50 - Train Loss: 0.2921, IoU: 0.0000, Dice: 0.0000 | Val Loss: 0.1534, IoU: 0.0000, Dice: 0.0000
+Epoch 4/50 [Train]:  26%|██▋       | 15/57 [00:03<00:06,  6.17it/s, loss=0.188, IoU=0, Dice=0]
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([3, 5, 64, 64]), masks.shape: torch.Size([3, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+Validation: 100%|██████████| 9/9 [00:01<00:00,  5.58it/s, loss=0.105, IoU=0, Dice=0] 
+Epoch 4/50 - Train Loss: 0.1643, IoU: 0.0000, Dice: 0.0000 | Val Loss: 0.1014, IoU: 0.0000, Dice: 0.0000
+Epoch 5/50 [Train]:  26%|██▋       | 15/57 [00:03<00:06,  6.16it/s, loss=0.125, IoU=0, Dice=0]
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64
+outputs.shape: torch.Size([8, 5, 64, 64]), masks.shape: torch.Size([8, 64, 64])
+outputs.dtype: torch.float32, masks.dtype: torch.int64

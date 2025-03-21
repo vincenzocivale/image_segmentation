@@ -172,10 +172,6 @@ class SegmentationTrainer:
                     ).squeeze(1).long()              # Rimuove la dimensione canale e converte in long
                 else:
                     masks_resized = masks
-                
-
-                print(f"outputs.shape: {outputs.shape}, masks.shape: {masks_resized.shape}")
-                print(f"outputs.dtype: {outputs.dtype}, masks.dtype: {masks_resized.dtype}")
 
                 # Calcola la loss
                 loss = self.criterion(outputs, masks_resized)
