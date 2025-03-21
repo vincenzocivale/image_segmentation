@@ -1,0 +1,17 @@
+{"time":"2025-03-20T17:48:18.162924999+01:00","level":"INFO","msg":"stream: starting","core version":"0.19.8","symlink path":"/home/inside-tech/Desktop/image_segmentation/wandb/run-20250320_174818-rni24yx3/logs/debug-core.log"}
+{"time":"2025-03-20T17:48:18.264271451+01:00","level":"INFO","msg":"created new stream","id":"rni24yx3"}
+{"time":"2025-03-20T17:48:18.264285865+01:00","level":"INFO","msg":"stream: started","id":"rni24yx3"}
+{"time":"2025-03-20T17:48:18.264334181+01:00","level":"INFO","msg":"writer: Do: started","stream_id":"rni24yx3"}
+{"time":"2025-03-20T17:48:18.26434207+01:00","level":"INFO","msg":"handler: started","stream_id":"rni24yx3"}
+{"time":"2025-03-20T17:48:18.264345531+01:00","level":"INFO","msg":"sender: started","stream_id":"rni24yx3"}
+{"time":"2025-03-20T17:48:18.534202922+01:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-03-20T17:49:30.07117298+01:00","level":"INFO","msg":"Pausing system monitor"}
+{"time":"2025-03-20T17:49:30.111894852+01:00","level":"INFO","msg":"Resuming system monitor"}
+{"time":"2025-03-20T17:49:30.111926165+01:00","level":"INFO","msg":"Pausing system monitor"}
+{"time":"2025-03-20T17:49:30.111928941+01:00","level":"INFO","msg":"Resuming system monitor"}
+{"time":"2025-03-20T17:49:30.111946716+01:00","level":"INFO","msg":"Pausing system monitor"}
+{"time":"2025-03-20T17:49:30.111948882+01:00","level":"INFO","msg":"Resuming system monitor"}
+{"time":"2025-03-20T17:49:31.685157109+01:00","level":"INFO","msg":"Pausing system monitor"}
+{"time":"2025-03-20T17:49:31.68854802+01:00","level":"INFO","msg":"Resuming system monitor"}
+{"time":"2025-03-20T17:49:31.689591467+01:00","level":"INFO","msg":"Pausing system monitor"}
+{"time":"2025-03-20T17:49:31.692691569+01:00","level":"INFO","msg":"Resuming system monitor"}
