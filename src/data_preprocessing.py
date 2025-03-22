@@ -6,6 +6,8 @@ from torchvision import transforms
 from PIL import Image
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
+from torchvision.transforms import functional as TF
+import random
 
 class SegmentationDataset(Dataset):
     def __init__(self, 
@@ -13,7 +15,8 @@ class SegmentationDataset(Dataset):
                  mask_dir, 
                  class_rgb_values, 
                  transform=None, 
-                 mask_transform=None):
+                 mask_transform=None,
+                 augmentation=False):
         """
         Dataloader per dataset di segmentazione semantica
         
@@ -31,6 +34,7 @@ class SegmentationDataset(Dataset):
         self.mask_transform = mask_transform
         self.class_rgb_values = class_rgb_values
         self.n_classes = len(class_rgb_values)
+        self.augmentation = augmentation
         
         # Ottieni la lista di tutti i file
         self.img_names = sorted([f for f in os.listdir(img_dir) if not f.startswith('.')])
@@ -60,7 +64,7 @@ class SegmentationDataset(Dataset):
         # Carica la maschera (presuppone stesso nome con estensione .png)
         mask_name = os.path.splitext(img_name)[0] + '.png'
         mask_path = os.path.join(self.mask_dir, mask_name)
-        mask = Image.open(mask_path).convert('RGB')
+        mask = np.array(Image.open(mask_path).convert('RGB'))
         
         # Applica trasformazioni
         if self.transform:
@@ -81,39 +85,56 @@ class SegmentationDataset(Dataset):
         }
     
     
-    def convert_rgb_to_class(self, rgb_mask):
+
+
+    def convert_rgb_to_class(self, image, one_hot=False, tensor_output=True):
         """
-        Converte una maschera RGB in una maschera di classi.
-
-        Parametri:
-            rgb_mask: numpy array o tensore di PyTorch, di forma (H, W, 3) o (3, H, W)
-
-        Ritorna:
-            class_mask: numpy array di forma (H, W) con indici di classe
+        Crea una maschera di segmentazione da un'immagine RGB dove ogni classe ha un colore specifico.
+        
+        Args:
+            image: numpy.ndarray in formato RGB di shape (H, W, 3)
+            one_hot: se True, restituisce una maschera one-hot encoded (H, W, num_classes)
+                se False, restituisce una maschera a singolo canale (H, W) con indici di classe
+            tensor_output: se True, converte l'output in tensor PyTorch
+        
+        Returns:
+            Maschera di segmentazione nel formato richiesto
         """
-        # Se rgb_mask è un tensore PyTorch, convertirlo in NumPy
-        if isinstance(rgb_mask, torch.Tensor):
-            rgb_mask = rgb_mask.numpy()
-
-        # Se rgb_mask ha la forma (3, H, W), trasporlo in (H, W, 3)
-        if rgb_mask.shape[0] == 3 and len(rgb_mask.shape) == 3:
-            rgb_mask = np.transpose(rgb_mask, (1, 2, 0))
-
-        # Creazione della maschera delle classi
-        class_mask = np.zeros((rgb_mask.shape[0], rgb_mask.shape[1]), dtype=np.uint8)
-
-        # Itera sulle classi e assegna il valore corretto alla maschera
-        for class_idx, rgb in self.class_rgb_values.items():
-            rgb_array = np.array(rgb, dtype=np.uint8)  # Converte la tupla/lista in array
-
-            # Confronta pixel per pixel
-            mask = np.all(rgb_mask == rgb_array, axis=-1)
-
-            # Assegna il valore della classe
-            class_mask[mask] = class_idx
-
+        height, width, _ = image.shape
+        num_classes = len(self.class_rgb_values)
+        
+        # Inizializza la maschera con valori di sfondo/classe 0
+        # Se hai una classe di sfondo, assicurati che sia mappata correttamente
+        class_mask = np.zeros((height, width), dtype=np.int64)
+        
+        # Crea un dizionario inverso per trovare l'ID classe dato un valore RGB
+        # Converti le liste in tuple per renderle hashable
+        rgb_to_class = {tuple(rgb): class_id for class_id, rgb in self.class_rgb_values.items()}
+        
+        # Riempi la maschera con l'ID classe appropriato per ogni pixel
+        for h in range(height):
+            for w in range(width):
+                pixel_rgb = tuple(image[h, w])
+                if pixel_rgb in rgb_to_class:
+                    class_mask[h, w] = rgb_to_class[pixel_rgb]
+        
+        # Se richiesto one-hot encoding
+        if one_hot:
+            # Crea una maschera one-hot encoding
+            mask_one_hot = np.zeros((height, width, num_classes), dtype=np.float32)
+            for class_id in self.class_rgb_values.keys():
+                mask_one_hot[:, :, class_id] = (class_mask == class_id).astype(np.float32)
+            
+            # Converti in tensor se richiesto
+            if tensor_output:
+                return torch.from_numpy(mask_one_hot).permute(2, 0, 1)  # (num_classes, H, W)
+            return mask_one_hot
+        
+        # Restituisci la maschera a singolo canale
+        if tensor_output:
+            return torch.from_numpy(class_mask).long()  # (H, W) con valori long
+        
         return class_mask
-
 
     def get_class_weight(self):
         """
@@ -136,8 +157,48 @@ class SegmentationDataset(Dataset):
         
         return torch.tensor(class_weights, dtype=torch.float)
 
+    
+    def apply_augmentation(self, image, mask):
+        """
+        Applica trasformazioni di data augmentation sia all'immagine che alla maschera
+        
+        Parametri:
+            image: Immagine PIL
+            mask: Maschera PIL
+            
+        Ritorna:
+            image, mask: Immagine e maschera trasformate
+        """
+        # Resize con la stessa dimensione target (prima di altre trasformazioni)
+        resize_size = (256, 256)
+        image = TF.resize(image, resize_size)
+        mask = TF.resize(mask, resize_size, interpolation=TF.InterpolationMode.NEAREST)
+        
+        # Random crop
+        i, j, h, w = transforms.RandomCrop.get_params(image, output_size=(224, 224))
+        image = TF.crop(image, i, j, h, w)
+        mask = TF.crop(mask, i, j, h, w)
+        
+        # Random horizontal flipping
+        if random.random() > 0.5:
+            image = TF.hflip(image)
+            mask = TF.hflip(mask)
+        
+        # Random vertical flipping
+        if random.random() > 0.7:  # Meno probabile del flip orizzontale
+            image = TF.vflip(image)
+            mask = TF.vflip(mask)
+            
+        # Random rotation
+        if random.random() > 0.7:
+            angle = random.randint(-15, 15)
+            image = TF.rotate(image, angle)
+            mask = TF.rotate(mask, angle, interpolation=TF.InterpolationMode.NEAREST)
+        
+        return image, mask
 
-def prepare_dataset(img_dir, mask_dir, class_rgb_values, batch_size=8, test_size=0.2, val_size=0.1, num_workers=4):
+
+def prepare_dataset(img_dir, mask_dir, class_rgb_values, batch_size=8, test_size=0.2, val_size=0.1, num_workers=4, augmentation=True):
     """
     Prepara il dataset dividendolo in train, validation e test
     
@@ -149,21 +210,19 @@ def prepare_dataset(img_dir, mask_dir, class_rgb_values, batch_size=8, test_size
         test_size (float): Frazione del dataset per il test
         val_size (float): Frazione del dataset per la validazione
         num_workers (int): Numero di worker per il dataloader
+        augmentation (bool): Se applicare data augmentation al training set
         
     Ritorna:
         train_loader, val_loader, test_loader: Dataloader per train, validation e test
     """
-    # Definisci le trasformazioni
+    # Definisci le trasformazioni base (normalizzazione)
     transform = transforms.Compose([
-        transforms.Resize((256, 256)),
         transforms.ToTensor(),
         transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
     ])
     
-    mask_transform = transforms.Compose([
-        transforms.Resize((256, 256), interpolation=transforms.InterpolationMode.NEAREST),
-        transforms.ToTensor()
-    ])
+    # Non usiamo più trasformazioni specifiche per le maschere perché 
+    # ora sono gestite all'interno del metodo apply_augmentation
     
     # Carica tutti i dati
     full_dataset = SegmentationDataset(
@@ -171,7 +230,8 @@ def prepare_dataset(img_dir, mask_dir, class_rgb_values, batch_size=8, test_size
         mask_dir=mask_dir,
         class_rgb_values=class_rgb_values,
         transform=transform,
-        mask_transform=mask_transform
+        mask_transform=None,
+        augmentation=False  # No augmentation per il dataset completo
     )
     
     # Ottieni tutti gli indici
@@ -183,10 +243,20 @@ def prepare_dataset(img_dir, mask_dir, class_rgb_values, batch_size=8, test_size
     
     print(f"Divisione dataset: {len(train_indices)} train, {len(val_indices)} validation, {len(test_indices)} test")
     
+    # Crea dataset specializzati
+    train_dataset = SegmentationDataset(
+        img_dir=img_dir,
+        mask_dir=mask_dir,
+        class_rgb_values=class_rgb_values,
+        transform=transform,
+        mask_transform=None,
+        augmentation=augmentation  # Applica augmentation solo al training set
+    )
+    
     # Crea subset
-    train_dataset = torch.utils.data.Subset(full_dataset, train_indices)
-    val_dataset = torch.utils.data.Subset(full_dataset, val_indices)
-    test_dataset = torch.utils.data.Subset(full_dataset, test_indices)
+    train_dataset = torch.utils.data.Subset(train_dataset, train_indices)
+    val_dataset = torch.utils.data.Subset(full_dataset, val_indices)  # Usa il dataset originale senza augmentation
+    test_dataset = torch.utils.data.Subset(full_dataset, test_indices)  # Usa il dataset originale senza augmentation
     
     # Crea dataloader
     train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, num_workers=num_workers)

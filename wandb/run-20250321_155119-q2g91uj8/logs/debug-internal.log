@@ -1,0 +1,17 @@
+{"time":"2025-03-21T15:51:19.924489424+01:00","level":"INFO","msg":"stream: starting","core version":"0.19.8","symlink path":"/home/inside-tech/Desktop/image_segmentation/wandb/run-20250321_155119-q2g91uj8/logs/debug-core.log"}
+{"time":"2025-03-21T15:51:20.029186348+01:00","level":"INFO","msg":"created new stream","id":"q2g91uj8"}
+{"time":"2025-03-21T15:51:20.029256337+01:00","level":"INFO","msg":"stream: started","id":"q2g91uj8"}
+{"time":"2025-03-21T15:51:20.029395123+01:00","level":"INFO","msg":"handler: started","stream_id":"q2g91uj8"}
+{"time":"2025-03-21T15:51:20.029395347+01:00","level":"INFO","msg":"writer: Do: started","stream_id":"q2g91uj8"}
+{"time":"2025-03-21T15:51:20.029558844+01:00","level":"INFO","msg":"sender: started","stream_id":"q2g91uj8"}
+{"time":"2025-03-21T15:51:20.266846465+01:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-03-21T15:53:04.043932294+01:00","level":"ERROR","msg":"file transfer: upload: failed to upload: 400 Bad Request","task":"DefaultUploadTask{FileKind: 0, Path: /home/inside-tech/Desktop/image_segmentation/wandb/run-20250321_155119-q2g91uj8/files/checkpoints/best_model_segformer.pth, Name: checkpoints/best_model_segformer.pth, Url: https://storage.googleapis.com/wandb-production.appspot.com/vincenzo-civale-universi-degli-studi-di-firenze/CowSegmentation/q2g91uj8/checkpoints/best_model_segformer.pth?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=gorilla-files-url-signer-man%40wandb-production.iam.gserviceaccount.com%2F20250321%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20250321T145247Z&X-Goog-Expires=86399&X-Goog-Signature=7b4fc173f0ace223a751f1078f26f606381ea6b4fe4c808293a28bbf5cfa3b62a192a8b8ee0a4a730e887527941d6c52afa31998103086b590d34dd930d64840e91739304cd681cac0f6ca76961d4a5f331036a4f4cf058a72e18d25735b869e78c00588eefe59e5a2c90597d537f3d4c6807dbf8562ae76792eec46d4dee6db6608e41a709a532ae758d717d7a3f23caab4036fe19828ebdb3387885d3e0b6a7f6578ae24d7d02cc7c3e64e768881e5133bea1ce33f6e66fb208034f3a9c600a22a65bba78a225823bf11b011071b5fbc37e3f0c800ae218c55c5aae790c2143eb6fc9c8e0d06753b4027426bd0ccd2bf3dd48c70a4a2ba6618b7d69f3e97f8&X-Goog-SignedHeaders=host&X-User=vincenzo-civale, Size: 44858243}"}
+{"time":"2025-03-21T16:06:40.238460519+01:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-03-21T16:06:40.238757332+01:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-03-21T16:06:41.240392888+01:00","level":"INFO","msg":"handler: operation stats","stats":{}}
+{"time":"2025-03-21T16:06:48.892362943+01:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-03-21T16:06:49.163845154+01:00","level":"INFO","msg":"stream: closing","id":"q2g91uj8"}
+{"time":"2025-03-21T16:06:49.163859556+01:00","level":"INFO","msg":"handler: closed","stream_id":"q2g91uj8"}
+{"time":"2025-03-21T16:06:49.163871576+01:00","level":"INFO","msg":"sender: closed","stream_id":"q2g91uj8"}
+{"time":"2025-03-21T16:06:49.1638676+01:00","level":"INFO","msg":"writer: Close: closed","stream_id":"q2g91uj8"}
+{"time":"2025-03-21T16:06:49.163919125+01:00","level":"INFO","msg":"stream: closed","id":"q2g91uj8"}

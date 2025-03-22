@@ -1,0 +1,7 @@
+{"time":"2025-03-21T16:07:01.04374935+01:00","level":"INFO","msg":"stream: starting","core version":"0.19.8","symlink path":"/home/inside-tech/Desktop/image_segmentation/wandb/run-20250321_160701-zhy4wwts/logs/debug-core.log"}
+{"time":"2025-03-21T16:07:01.146684682+01:00","level":"INFO","msg":"created new stream","id":"zhy4wwts"}
+{"time":"2025-03-21T16:07:01.146769731+01:00","level":"INFO","msg":"stream: started","id":"zhy4wwts"}
+{"time":"2025-03-21T16:07:01.146793808+01:00","level":"INFO","msg":"handler: started","stream_id":"zhy4wwts"}
+{"time":"2025-03-21T16:07:01.146893823+01:00","level":"INFO","msg":"writer: Do: started","stream_id":"zhy4wwts"}
+{"time":"2025-03-21T16:07:01.146904857+01:00","level":"INFO","msg":"sender: started","stream_id":"zhy4wwts"}
+{"time":"2025-03-21T16:07:01.415259492+01:00","level":"INFO","msg":"Starting system monitor"}

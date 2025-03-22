@@ -226,15 +226,27 @@ class SegmentationTrainer:
             if val_iou > self.best_val_iou:
                 self.best_val_iou = val_iou
                 self.best_epoch = epoch + 1
+
+                encoder_name = self.model.segformer.config.model_type
+                num_classes = self.model.segformer.config.num_labels
+                lr = self.optimizer.param_groups[0]['lr']
+
+                checkpoint_filename = f"{self.experiment_name}_enc-{encoder_name}_cls-{num_classes}_ep-{epoch+1}_iou-{val_iou:.4f}_dice-{val_dice:.4f}_lr-{lr:.1e}.pth"
                 
-                # Salva il checkpoint
-                checkpoint_path = os.path.join(save_dir, f'best_model_{self.experiment_name}.pth')
+                checkpoint_path = os.path.join(save_dir, checkpoint_filename)
                 torch.save({
                     'epoch': epoch + 1,
                     'model_state_dict': self.model.state_dict(),
                     'optimizer_state_dict': self.optimizer.state_dict(),
                     'val_iou': val_iou,
-                    'val_dice': val_dice
+                    'val_dice': val_dice,
+                    'hyperparams': {
+                        'learning_rate': lr,
+                        'weight_decay': self.optimizer.param_groups[0]['weight_decay'],
+                        'model_type': encoder_name,
+                        'num_classes': num_classes,
+                        'class_weights': self.class_weights.cpu().numpy().tolist() if self.class_weights is not None else None
+                    }
                 }, checkpoint_path)
                 
                 wandb.save(checkpoint_path)
@@ -329,6 +341,17 @@ class SegmentationTrainer:
                 
                 # Forward pass
                 outputs = self.model(images)
+
+                if masks.shape[1:] != outputs.shape[2:]:
+                    # Le maschere devono essere prima convertite in float per l'interpolazione
+                    # Aggiungiamo un canale (unsqueeze) perché interpolate richiede un tensore 4D [B, C, H, W]
+                    masks = F.interpolate(
+                        masks.float().unsqueeze(1),  # Aggiunge dimensione canale [B, 1, H, W]
+                        size=outputs.shape[2:],      # Target size [64, 64]
+                        mode='nearest'               # Usa 'nearest' per preservare le classi
+                    ).squeeze(1).long()              # Rimuove la dimensione canale e converte in long
+                else:
+                    masks = masks
                 
                 # Calcola la loss
                 loss = self.criterion(outputs, masks)
@@ -448,24 +471,10 @@ class SegmentationTrainer:
         return iou, dice
     
     def log_predictions(self, images, masks, outputs, phase='train', max_samples=4):
-        """
-        Visualizza e logga le predizioni a W&B
-        
-        Parametri:
-            images: Immagini di input
-            masks: Ground truth
-            outputs: Output del modello
-            phase: Fase (train, val, test)
-            max_samples: Numero massimo di campioni da visualizzare
-        """
-        # Limita il numero di campioni
         n_samples = min(max_samples, images.size(0))
-        
-        # Ottieni le predizioni
         preds = torch.argmax(outputs[:n_samples], dim=1).detach().cpu().numpy()
         masks = masks[:n_samples].detach().cpu().numpy()
         
-        # De-normalizza le immagini
         mean = torch.tensor([0.485, 0.456, 0.406]).view(3, 1, 1)
         std = torch.tensor([0.229, 0.224, 0.225]).view(3, 1, 1)
         
@@ -477,38 +486,29 @@ class SegmentationTrainer:
             img = np.clip(img, 0, 1)
             images_np.append(img)
         
-        # Crea mappa colori
         num_classes = outputs.size(1)
         cmap = plt.cm.get_cmap('tab10', num_classes)
         
-        # Prepara le figure
         for i in range(n_samples):
             fig, axs = plt.subplots(1, 3, figsize=(15, 5))
             
-            # Immagine originale
             axs[0].imshow(images_np[i])
             axs[0].set_title('Input Image')
             axs[0].axis('off')
             
-            # Ground truth
             axs[1].imshow(masks[i], cmap=cmap, vmin=0, vmax=num_classes-1)
             axs[1].set_title('Ground Truth')
             axs[1].axis('off')
             
-            # Predizione
             axs[2].imshow(preds[i], cmap=cmap, vmin=0, vmax=num_classes-1)
             axs[2].set_title('Prediction')
             axs[2].axis('off')
             
             plt.tight_layout()
             
-            # Salva e logga a W&B
-            fig_path = f'{phase}_sample_{i}.png'
-            plt.savefig(fig_path)
-            plt.close(fig)
-            
-            wandb.log({f"{phase}_predictions_{i}": wandb.Image(fig_path)})
-
+            # Log direttamente a W&B usando plt.gcf()
+            wandb.log({f"{phase}_predictions_{i}": wandb.Image(plt.gcf())})
+            plt.close()
 
 # Utilizzo del trainer
 def train_segformer(train_loader, val_loader, test_loader=None, num_classes=4, 

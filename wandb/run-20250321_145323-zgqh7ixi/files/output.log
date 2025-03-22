@@ -1,0 +1,160 @@
+Dataset caricato: 646 immagini con maschere corrispondenti
+Divisione dataset: 451 train, 65 validation, 130 test
+Some weights of SegformerForSemanticSegmentation were not initialized from the model checkpoint at nvidia/segformer-b0-finetuned-ade-512-512 and are newly initialized because the shapes did not match:
+- decode_head.classifier.bias: found shape torch.Size([150]) in the checkpoint and torch.Size([5]) in the model instantiated
+- decode_head.classifier.weight: found shape torch.Size([150, 256, 1, 1]) in the checkpoint and torch.Size([5, 256, 1, 1]) in the model instantiated
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+/home/inside-tech/Desktop/image_segmentation/.venv/lib/python3.12/site-packages/torch/optim/lr_scheduler.py:62: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn(
+Epoch 1/50 [Train]: 100%|██████████| 57/57 [00:09<00:00,  5.93it/s, loss=0.858, IoU=0, Dice=0]
+Validation: 100%|██████████| 9/9 [00:01<00:00,  6.17it/s, loss=0.7, IoU=0, Dice=0]  
+Epoch 1/50 - Train Loss: 1.2404, IoU: 0.0000, Dice: 0.0000 | Val Loss: 0.6752, IoU: 0.0000, Dice: 0.0000
+Epoch 2/50 [Train]: 100%|██████████| 57/57 [00:09<00:00,  6.06it/s, loss=0.408, IoU=0, Dice=0]
+Validation: 100%|██████████| 9/9 [00:01<00:00,  5.56it/s, loss=0.35, IoU=0, Dice=0] 
+Epoch 2/50 - Train Loss: 0.5811, IoU: 0.0000, Dice: 0.0000 | Val Loss: 0.3387, IoU: 0.0000, Dice: 0.0000
+Epoch 3/50 [Train]: 100%|██████████| 57/57 [00:10<00:00,  5.65it/s, loss=0.237, IoU=0, Dice=0]
+Validation: 100%|██████████| 9/9 [00:01<00:00,  5.54it/s, loss=0.162, IoU=0, Dice=0]
+Epoch 3/50 - Train Loss: 0.2896, IoU: 0.0000, Dice: 0.0000 | Val Loss: 0.1507, IoU: 0.0000, Dice: 0.0000
+Epoch 4/50 [Train]: 100%|██████████| 57/57 [00:10<00:00,  5.63it/s, loss=0.121, IoU=0, Dice=0]
+Validation: 100%|██████████| 9/9 [00:01<00:00,  5.34it/s, loss=0.106, IoU=0, Dice=0] 
+Epoch 4/50 - Train Loss: 0.1653, IoU: 0.0000, Dice: 0.0000 | Val Loss: 0.1003, IoU: 0.0000, Dice: 0.0000
+Epoch 5/50 [Train]: 100%|██████████| 57/57 [00:10<00:00,  5.58it/s, loss=0.126, IoU=0, Dice=0] 
+Validation: 100%|██████████| 9/9 [00:01<00:00,  5.51it/s, loss=0.0632, IoU=0, Dice=0]
+Epoch 5/50 - Train Loss: 0.1085, IoU: 0.0000, Dice: 0.0000 | Val Loss: 0.0578, IoU: 0.0000, Dice: 0.0000
+Epoch 6/50 [Train]: 100%|██████████| 57/57 [00:09<00:00,  5.73it/s, loss=0.132, IoU=0, Dice=0] 
+Validation: 100%|██████████| 9/9 [00:01<00:00,  5.43it/s, loss=0.049, IoU=0, Dice=0] 
+Epoch 6/50 - Train Loss: 0.0801, IoU: 0.0000, Dice: 0.0000 | Val Loss: 0.0429, IoU: 0.0000, Dice: 0.0000
+Epoch 7/50 [Train]: 100%|██████████| 57/57 [00:10<00:00,  5.56it/s, loss=0.0395, IoU=0, Dice=0]
+Validation: 100%|██████████| 9/9 [00:01<00:00,  5.38it/s, loss=0.0366, IoU=0, Dice=0]
+Epoch 7/50 - Train Loss: 0.0578, IoU: 0.0000, Dice: 0.0000 | Val Loss: 0.0354, IoU: 0.0000, Dice: 0.0000
+Epoch 8/50 [Train]: 100%|██████████| 57/57 [00:10<00:00,  5.64it/s, loss=0.0509, IoU=0, Dice=0]
+Validation: 100%|██████████| 9/9 [00:01<00:00,  5.25it/s, loss=0.0341, IoU=0, Dice=0]
+Epoch 8/50 - Train Loss: 0.0437, IoU: 0.0000, Dice: 0.0000 | Val Loss: 0.0283, IoU: 0.0000, Dice: 0.0000
+Epoch 9/50 [Train]: 100%|██████████| 57/57 [00:10<00:00,  5.69it/s, loss=0.0387, IoU=0, Dice=0]
+Validation: 100%|██████████| 9/9 [00:01<00:00,  5.33it/s, loss=0.0253, IoU=0, Dice=0]
+Epoch 9/50 - Train Loss: 0.0369, IoU: 0.0000, Dice: 0.0000 | Val Loss: 0.0232, IoU: 0.0000, Dice: 0.0000
+Epoch 10/50 [Train]: 100%|██████████| 57/57 [00:10<00:00,  5.48it/s, loss=0.0261, IoU=0, Dice=0]
+Validation: 100%|██████████| 9/9 [00:01<00:00,  5.27it/s, loss=0.0215, IoU=0, Dice=0]
+Epoch 10/50 - Train Loss: 0.0341, IoU: 0.0000, Dice: 0.0000 | Val Loss: 0.0186, IoU: 0.0000, Dice: 0.0000
+Epoch 11/50 [Train]: 100%|██████████| 57/57 [00:10<00:00,  5.66it/s, loss=0.0274, IoU=0, Dice=0]
+Validation: 100%|██████████| 9/9 [00:01<00:00,  5.27it/s, loss=0.0163, IoU=0, Dice=0]
+Epoch 11/50 - Train Loss: 0.0250, IoU: 0.0000, Dice: 0.0000 | Val Loss: 0.0146, IoU: 0.0000, Dice: 0.0000
+Epoch 12/50 [Train]: 100%|██████████| 57/57 [00:10<00:00,  5.66it/s, loss=0.0174, IoU=0, Dice=0]
+Validation: 100%|██████████| 9/9 [00:02<00:00,  4.15it/s, loss=0.0147, IoU=0, Dice=0]
+Epoch 12/50 - Train Loss: 0.0212, IoU: 0.0000, Dice: 0.0000 | Val Loss: 0.0132, IoU: 0.0000, Dice: 0.0000
+Epoch 13/50 [Train]: 100%|██████████| 57/57 [00:10<00:00,  5.64it/s, loss=0.0175, IoU=0, Dice=0]
+Validation: 100%|██████████| 9/9 [00:01<00:00,  5.21it/s, loss=0.0132, IoU=0, Dice=0]
+Epoch 13/50 - Train Loss: 0.0181, IoU: 0.0000, Dice: 0.0000 | Val Loss: 0.0113, IoU: 0.0000, Dice: 0.0000
+Epoch 14/50 [Train]: 100%|██████████| 57/57 [00:10<00:00,  5.64it/s, loss=0.0129, IoU=0, Dice=0]
+Validation: 100%|██████████| 9/9 [00:01<00:00,  5.15it/s, loss=0.0111, IoU=0, Dice=0] 
+Epoch 14/50 - Train Loss: 0.0174, IoU: 0.0000, Dice: 0.0000 | Val Loss: 0.0097, IoU: 0.0000, Dice: 0.0000
+Epoch 15/50 [Train]: 100%|██████████| 57/57 [00:10<00:00,  5.62it/s, loss=0.0136, IoU=0, Dice=0]
+Validation: 100%|██████████| 9/9 [00:01<00:00,  5.16it/s, loss=0.00943, IoU=0, Dice=0]
+Epoch 15/50 - Train Loss: 0.0134, IoU: 0.0000, Dice: 0.0000 | Val Loss: 0.0083, IoU: 0.0000, Dice: 0.0000
+Epoch 16/50 [Train]: 100%|██████████| 57/57 [00:10<00:00,  5.38it/s, loss=0.0112, IoU=0, Dice=0] 
+Validation: 100%|██████████| 9/9 [00:01<00:00,  5.08it/s, loss=0.00823, IoU=0, Dice=0]
+Epoch 16/50 - Train Loss: 0.0132, IoU: 0.0000, Dice: 0.0000 | Val Loss: 0.0072, IoU: 0.0000, Dice: 0.0000
+Epoch 17/50 [Train]: 100%|██████████| 57/57 [00:10<00:00,  5.59it/s, loss=0.0121, IoU=0, Dice=0] 
+Validation: 100%|██████████| 9/9 [00:01<00:00,  5.07it/s, loss=0.00725, IoU=0, Dice=0]
+Epoch 17/50 - Train Loss: 0.0112, IoU: 0.0000, Dice: 0.0000 | Val Loss: 0.0064, IoU: 0.0000, Dice: 0.0000
+Epoch 18/50 [Train]: 100%|██████████| 57/57 [00:10<00:00,  5.58it/s, loss=0.00995, IoU=0, Dice=0]
+Validation: 100%|██████████| 9/9 [00:01<00:00,  5.07it/s, loss=0.00749, IoU=0, Dice=0]
+Epoch 18/50 - Train Loss: 0.0106, IoU: 0.0000, Dice: 0.0000 | Val Loss: 0.0062, IoU: 0.0000, Dice: 0.0000
+Epoch 19/50 [Train]: 100%|██████████| 57/57 [00:10<00:00,  5.60it/s, loss=0.0113, IoU=0, Dice=0] 
+Validation: 100%|██████████| 9/9 [00:01<00:00,  5.03it/s, loss=0.00669, IoU=0, Dice=0]
+Epoch 19/50 - Train Loss: 0.0094, IoU: 0.0000, Dice: 0.0000 | Val Loss: 0.0053, IoU: 0.0000, Dice: 0.0000
+Epoch 20/50 [Train]: 100%|██████████| 57/57 [00:10<00:00,  5.21it/s, loss=0.00548, IoU=0, Dice=0]
+Validation: 100%|██████████| 9/9 [00:01<00:00,  5.12it/s, loss=0.0065, IoU=0, Dice=0] 
+Epoch 20/50 - Train Loss: 0.0094, IoU: 0.0000, Dice: 0.0000 | Val Loss: 0.0048, IoU: 0.0000, Dice: 0.0000
+Epoch 21/50 [Train]: 100%|██████████| 57/57 [00:10<00:00,  5.58it/s, loss=0.00638, IoU=0, Dice=0]
+Validation: 100%|██████████| 9/9 [00:01<00:00,  5.00it/s, loss=0.00528, IoU=0, Dice=0]
+Epoch 21/50 - Train Loss: 0.0075, IoU: 0.0000, Dice: 0.0000 | Val Loss: 0.0042, IoU: 0.0000, Dice: 0.0000
+Epoch 22/50 [Train]: 100%|██████████| 57/57 [00:10<00:00,  5.56it/s, loss=0.00975, IoU=0, Dice=0]
+Validation: 100%|██████████| 9/9 [00:01<00:00,  4.94it/s, loss=0.00467, IoU=0, Dice=0]
+Epoch 22/50 - Train Loss: 0.0069, IoU: 0.0000, Dice: 0.0000 | Val Loss: 0.0040, IoU: 0.0000, Dice: 0.0000
+Epoch 23/50 [Train]: 100%|██████████| 57/57 [00:10<00:00,  5.57it/s, loss=0.0068, IoU=0, Dice=0] 
+Validation: 100%|██████████| 9/9 [00:01<00:00,  4.93it/s, loss=0.00564, IoU=0, Dice=0]
+Epoch 23/50 - Train Loss: 0.0066, IoU: 0.0000, Dice: 0.0000 | Val Loss: 0.0041, IoU: 0.0000, Dice: 0.0000
+Epoch 24/50 [Train]: 100%|██████████| 57/57 [00:10<00:00,  5.55it/s, loss=0.00893, IoU=0, Dice=0]
+Validation: 100%|██████████| 9/9 [00:01<00:00,  4.88it/s, loss=0.00446, IoU=0, Dice=0]
+Epoch 24/50 - Train Loss: 0.0060, IoU: 0.0000, Dice: 0.0000 | Val Loss: 0.0033, IoU: 0.0000, Dice: 0.0000
+Epoch 25/50 [Train]: 100%|██████████| 57/57 [00:10<00:00,  5.59it/s, loss=0.00496, IoU=0, Dice=0]
+Validation: 100%|██████████| 9/9 [00:01<00:00,  4.88it/s, loss=0.00409, IoU=0, Dice=0]
+Epoch 25/50 - Train Loss: 0.0054, IoU: 0.0000, Dice: 0.0000 | Val Loss: 0.0031, IoU: 0.0000, Dice: 0.0000
+Epoch 26/50 [Train]: 100%|██████████| 57/57 [00:11<00:00,  5.17it/s, loss=0.00467, IoU=0, Dice=0]
+Validation: 100%|██████████| 9/9 [00:01<00:00,  4.83it/s, loss=0.00356, IoU=0, Dice=0]
+Epoch 26/50 - Train Loss: 0.0046, IoU: 0.0000, Dice: 0.0000 | Val Loss: 0.0029, IoU: 0.0000, Dice: 0.0000
+Epoch 27/50 [Train]: 100%|██████████| 57/57 [00:10<00:00,  5.55it/s, loss=0.0046, IoU=0, Dice=0] 
+Validation: 100%|██████████| 9/9 [00:01<00:00,  4.86it/s, loss=0.00316, IoU=0, Dice=0]
+Epoch 27/50 - Train Loss: 0.0045, IoU: 0.0000, Dice: 0.0000 | Val Loss: 0.0026, IoU: 0.0000, Dice: 0.0000
+Epoch 28/50 [Train]: 100%|██████████| 57/57 [00:10<00:00,  5.53it/s, loss=0.00465, IoU=0, Dice=0]
+Validation: 100%|██████████| 9/9 [00:01<00:00,  4.83it/s, loss=0.00256, IoU=0, Dice=0]
+Epoch 28/50 - Train Loss: 0.0043, IoU: 0.0000, Dice: 0.0000 | Val Loss: 0.0024, IoU: 0.0000, Dice: 0.0000
+Epoch 29/50 [Train]: 100%|██████████| 57/57 [00:10<00:00,  5.52it/s, loss=0.00432, IoU=0, Dice=0]
+Validation: 100%|██████████| 9/9 [00:01<00:00,  4.82it/s, loss=0.00261, IoU=0, Dice=0]
+Epoch 29/50 - Train Loss: 0.0040, IoU: 0.0000, Dice: 0.0000 | Val Loss: 0.0021, IoU: 0.0000, Dice: 0.0000
+Epoch 30/50 [Train]: 100%|██████████| 57/57 [00:10<00:00,  5.51it/s, loss=0.00542, IoU=0, Dice=0]
+Validation: 100%|██████████| 9/9 [00:01<00:00,  4.73it/s, loss=0.00287, IoU=0, Dice=0]
+Epoch 30/50 - Train Loss: 0.0038, IoU: 0.0000, Dice: 0.0000 | Val Loss: 0.0023, IoU: 0.0000, Dice: 0.0000
+Epoch 31/50 [Train]: 100%|██████████| 57/57 [00:10<00:00,  5.52it/s, loss=0.00259, IoU=0, Dice=0]
+Validation: 100%|██████████| 9/9 [00:01<00:00,  4.71it/s, loss=0.00233, IoU=0, Dice=0]
+Epoch 31/50 - Train Loss: 0.0036, IoU: 0.0000, Dice: 0.0000 | Val Loss: 0.0019, IoU: 0.0000, Dice: 0.0000
+Epoch 32/50 [Train]: 100%|██████████| 57/57 [00:10<00:00,  5.49it/s, loss=0.00549, IoU=0, Dice=0]
+Validation: 100%|██████████| 9/9 [00:01<00:00,  4.65it/s, loss=0.00218, IoU=0, Dice=0]
+Epoch 32/50 - Train Loss: 0.0031, IoU: 0.0000, Dice: 0.0000 | Val Loss: 0.0017, IoU: 0.0000, Dice: 0.0000
+Epoch 33/50 [Train]: 100%|██████████| 57/57 [00:11<00:00,  5.04it/s, loss=0.00369, IoU=0, Dice=0]
+Validation: 100%|██████████| 9/9 [00:01<00:00,  4.72it/s, loss=0.0021, IoU=0, Dice=0] 
+Epoch 33/50 - Train Loss: 0.0029, IoU: 0.0000, Dice: 0.0000 | Val Loss: 0.0017, IoU: 0.0000, Dice: 0.0000
+Epoch 34/50 [Train]: 100%|██████████| 57/57 [00:10<00:00,  5.49it/s, loss=0.0025, IoU=0, Dice=0] 
+Validation: 100%|██████████| 9/9 [00:01<00:00,  4.63it/s, loss=0.00191, IoU=0, Dice=0]
+Epoch 34/50 - Train Loss: 0.0029, IoU: 0.0000, Dice: 0.0000 | Val Loss: 0.0016, IoU: 0.0000, Dice: 0.0000
+Epoch 35/50 [Train]: 100%|██████████| 57/57 [00:10<00:00,  5.49it/s, loss=0.0025, IoU=0, Dice=0] 
+Validation: 100%|██████████| 9/9 [00:01<00:00,  4.64it/s, loss=0.00168, IoU=0, Dice=0]
+Epoch 35/50 - Train Loss: 0.0028, IoU: 0.0000, Dice: 0.0000 | Val Loss: 0.0014, IoU: 0.0000, Dice: 0.0000
+Epoch 36/50 [Train]: 100%|██████████| 57/57 [00:10<00:00,  5.48it/s, loss=0.00223, IoU=0, Dice=0]
+Validation: 100%|██████████| 9/9 [00:01<00:00,  4.64it/s, loss=0.00185, IoU=0, Dice=0]
+Epoch 36/50 - Train Loss: 0.0023, IoU: 0.0000, Dice: 0.0000 | Val Loss: 0.0015, IoU: 0.0000, Dice: 0.0000
+Epoch 37/50 [Train]: 100%|██████████| 57/57 [00:10<00:00,  5.45it/s, loss=0.00292, IoU=0, Dice=0]
+Validation: 100%|██████████| 9/9 [00:01<00:00,  4.62it/s, loss=0.00183, IoU=0, Dice=0]
+Epoch 37/50 - Train Loss: 0.0023, IoU: 0.0000, Dice: 0.0000 | Val Loss: 0.0015, IoU: 0.0000, Dice: 0.0000
+Epoch 38/50 [Train]: 100%|██████████| 57/57 [00:10<00:00,  5.43it/s, loss=0.00207, IoU=0, Dice=0]
+Validation: 100%|██████████| 9/9 [00:01<00:00,  4.58it/s, loss=0.00197, IoU=0, Dice=0] 
+Epoch 38/50 - Train Loss: 0.0028, IoU: 0.0000, Dice: 0.0000 | Val Loss: 0.0014, IoU: 0.0000, Dice: 0.0000
+Epoch 39/50 [Train]: 100%|██████████| 57/57 [00:10<00:00,  5.47it/s, loss=0.00213, IoU=0, Dice=0]
+Validation: 100%|██████████| 9/9 [00:01<00:00,  4.57it/s, loss=0.00158, IoU=0, Dice=0] 
+Epoch 39/50 - Train Loss: 0.0022, IoU: 0.0000, Dice: 0.0000 | Val Loss: 0.0012, IoU: 0.0000, Dice: 0.0000
+Epoch 40/50 [Train]: 100%|██████████| 57/57 [00:10<00:00,  5.45it/s, loss=0.00233, IoU=0, Dice=0]
+Validation: 100%|██████████| 9/9 [00:01<00:00,  4.55it/s, loss=0.00137, IoU=0, Dice=0] 
+Epoch 40/50 - Train Loss: 0.0020, IoU: 0.0000, Dice: 0.0000 | Val Loss: 0.0011, IoU: 0.0000, Dice: 0.0000
+Epoch 41/50 [Train]: 100%|██████████| 57/57 [00:11<00:00,  4.95it/s, loss=0.00168, IoU=0, Dice=0]
+Validation: 100%|██████████| 9/9 [00:01<00:00,  4.57it/s, loss=0.00143, IoU=0, Dice=0] 
+Epoch 41/50 - Train Loss: 0.0020, IoU: 0.0000, Dice: 0.0000 | Val Loss: 0.0011, IoU: 0.0000, Dice: 0.0000
+Epoch 42/50 [Train]: 100%|██████████| 57/57 [00:10<00:00,  5.45it/s, loss=0.00238, IoU=0, Dice=0]
+Validation: 100%|██████████| 9/9 [00:01<00:00,  4.51it/s, loss=0.00136, IoU=0, Dice=0] 
+Epoch 42/50 - Train Loss: 0.0019, IoU: 0.0000, Dice: 0.0000 | Val Loss: 0.0011, IoU: 0.0000, Dice: 0.0000
+Epoch 43/50 [Train]: 100%|██████████| 57/57 [00:10<00:00,  5.45it/s, loss=0.0014, IoU=0, Dice=0] 
+Validation: 100%|██████████| 9/9 [00:02<00:00,  4.49it/s, loss=0.0013, IoU=0, Dice=0]  
+Epoch 43/50 - Train Loss: 0.0019, IoU: 0.0000, Dice: 0.0000 | Val Loss: 0.0010, IoU: 0.0000, Dice: 0.0000
+Epoch 44/50 [Train]: 100%|██████████| 57/57 [00:10<00:00,  5.44it/s, loss=0.0019, IoU=0, Dice=0] 
+Validation: 100%|██████████| 9/9 [00:01<00:00,  4.52it/s, loss=0.00113, IoU=0, Dice=0] 
+Epoch 44/50 - Train Loss: 0.0016, IoU: 0.0000, Dice: 0.0000 | Val Loss: 0.0009, IoU: 0.0000, Dice: 0.0000
+Epoch 45/50 [Train]: 100%|██████████| 57/57 [00:10<00:00,  5.46it/s, loss=0.0012, IoU=0, Dice=0] 
+Validation: 100%|██████████| 9/9 [00:02<00:00,  4.46it/s, loss=0.00106, IoU=0, Dice=0] 
+Epoch 45/50 - Train Loss: 0.0015, IoU: 0.0000, Dice: 0.0000 | Val Loss: 0.0008, IoU: 0.0000, Dice: 0.0000
+Epoch 46/50 [Train]: 100%|██████████| 57/57 [00:10<00:00,  5.45it/s, loss=0.00129, IoU=0, Dice=0] 
+Validation: 100%|██████████| 9/9 [00:02<00:00,  4.46it/s, loss=0.00105, IoU=0, Dice=0] 
+Epoch 46/50 - Train Loss: 0.0015, IoU: 0.0000, Dice: 0.0000 | Val Loss: 0.0008, IoU: 0.0000, Dice: 0.0000
+Epoch 47/50 [Train]: 100%|██████████| 57/57 [00:10<00:00,  5.42it/s, loss=0.00115, IoU=0, Dice=0]
+Validation: 100%|██████████| 9/9 [00:02<00:00,  4.43it/s, loss=0.000894, IoU=0, Dice=0]
+Epoch 47/50 - Train Loss: 0.0015, IoU: 0.0000, Dice: 0.0000 | Val Loss: 0.0007, IoU: 0.0000, Dice: 0.0000
+Epoch 48/50 [Train]: 100%|██████████| 57/57 [00:10<00:00,  5.46it/s, loss=0.0011, IoU=0, Dice=0]  
+Validation: 100%|██████████| 9/9 [00:02<00:00,  4.46it/s, loss=0.000911, IoU=0, Dice=0]
+Epoch 48/50 - Train Loss: 0.0013, IoU: 0.0000, Dice: 0.0000 | Val Loss: 0.0007, IoU: 0.0000, Dice: 0.0000
+Epoch 49/50 [Train]: 100%|██████████| 57/57 [00:10<00:00,  5.40it/s, loss=0.00104, IoU=0, Dice=0] 
+Validation: 100%|██████████| 9/9 [00:02<00:00,  4.41it/s, loss=0.000904, IoU=0, Dice=0]
+Epoch 49/50 - Train Loss: 0.0013, IoU: 0.0000, Dice: 0.0000 | Val Loss: 0.0007, IoU: 0.0000, Dice: 0.0000
+Epoch 50/50 [Train]: 100%|██████████| 57/57 [00:10<00:00,  5.43it/s, loss=0.00104, IoU=0, Dice=0] 
+Validation: 100%|██████████| 9/9 [00:02<00:00,  4.31it/s, loss=0.000783, IoU=0, Dice=0]
+Epoch 50/50 - Train Loss: 0.0012, IoU: 0.0000, Dice: 0.0000 | Val Loss: 0.0007, IoU: 0.0000, Dice: 0.0000
+Test: 100%|██████████| 17/17 [00:04<00:00,  3.53it/s, loss=0.000528, IoU=0, Dice=0]
+Test - Loss: 0.0007, IoU: 0.0000, Dice: 0.0000
