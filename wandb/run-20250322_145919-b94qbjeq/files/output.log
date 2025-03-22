@@ -9,4 +9,6 @@ Some weights of SegformerForSemanticSegmentation were not initialized from the m
 You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
 /home/inside-tech/Desktop/image_segmentation/.venv/lib/python3.12/site-packages/torch/optim/lr_scheduler.py:62: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
   warnings.warn(
+/home/inside-tech/Desktop/image_segmentation/src/model.py:151: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  scaler = GradScaler()
 Epoch 1/50 [Train]:   0%|          | 0/57 [00:18<?, ?it/s]

@@ -1,0 +1,17 @@
+{"time":"2025-03-22T17:01:21.769976818+01:00","level":"INFO","msg":"stream: starting","core version":"0.19.8","symlink path":"/home/inside-tech/Desktop/image_segmentation/wandb/run-20250322_170121-w6xainca/logs/debug-core.log"}
+{"time":"2025-03-22T17:01:21.873547447+01:00","level":"INFO","msg":"created new stream","id":"w6xainca"}
+{"time":"2025-03-22T17:01:21.873639214+01:00","level":"INFO","msg":"stream: started","id":"w6xainca"}
+{"time":"2025-03-22T17:01:21.87383672+01:00","level":"INFO","msg":"writer: Do: started","stream_id":"w6xainca"}
+{"time":"2025-03-22T17:01:21.873895741+01:00","level":"INFO","msg":"handler: started","stream_id":"w6xainca"}
+{"time":"2025-03-22T17:01:21.874089942+01:00","level":"INFO","msg":"sender: started","stream_id":"w6xainca"}
+{"time":"2025-03-22T17:01:22.144780425+01:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-03-22T17:01:22.281410877+01:00","level":"INFO","msg":"Pausing system monitor"}
+{"time":"2025-03-22T17:01:54.373615353+01:00","level":"INFO","msg":"Resuming system monitor"}
+{"time":"2025-03-22T17:01:54.415038396+01:00","level":"INFO","msg":"Pausing system monitor"}
+{"time":"2025-03-22T17:01:54.415066648+01:00","level":"INFO","msg":"Resuming system monitor"}
+{"time":"2025-03-22T17:01:54.415070485+01:00","level":"INFO","msg":"Pausing system monitor"}
+{"time":"2025-03-22T17:01:54.415073329+01:00","level":"INFO","msg":"Resuming system monitor"}
+{"time":"2025-03-22T17:01:54.415075937+01:00","level":"INFO","msg":"Pausing system monitor"}
+{"time":"2025-03-22T17:01:54.415078554+01:00","level":"INFO","msg":"Resuming system monitor"}
+{"time":"2025-03-22T17:01:54.415081752+01:00","level":"INFO","msg":"Pausing system monitor"}
+{"time":"2025-03-22T17:02:07.435855195+01:00","level":"INFO","msg":"Resuming system monitor"}

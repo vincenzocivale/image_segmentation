@@ -15,8 +15,7 @@ class SegmentationDataset(Dataset):
                  mask_dir, 
                  class_rgb_values, 
                  transform=None, 
-                 mask_transform=None,
-                 augmentation=False):
+                 mask_transform=None):  # rimosso parametro augmentation
         """
         Dataloader per dataset di segmentazione semantica
         
@@ -24,7 +23,6 @@ class SegmentationDataset(Dataset):
             img_dir (str): Percorso alla directory con le immagini raw
             mask_dir (str): Percorso alla directory con le maschere
             class_rgb_values (dict): Dizionario che mappa classi a valori RGB 
-                                    es. {0: [0, 0, 0], 1: [255, 0, 0], ...}
             transform (callable, optional): Trasformazioni da applicare alle immagini
             mask_transform (callable, optional): Trasformazioni da applicare alle maschere
         """
@@ -34,7 +32,7 @@ class SegmentationDataset(Dataset):
         self.mask_transform = mask_transform
         self.class_rgb_values = class_rgb_values
         self.n_classes = len(class_rgb_values)
-        self.augmentation = augmentation
+        # rimosso self.augmentation
         
         # Ottieni la lista di tutti i file
         self.img_names = sorted([f for f in os.listdir(img_dir) if not f.startswith('.')])
@@ -198,7 +196,7 @@ class SegmentationDataset(Dataset):
         return image, mask
 
 
-def prepare_dataset(img_dir, mask_dir, class_rgb_values, batch_size=8, test_size=0.2, val_size=0.1, num_workers=4, augmentation=True):
+def prepare_dataset(img_dir, mask_dir, class_rgb_values, batch_size=8, test_size=0.2, val_size=0.1, num_workers=4):
     """
     Prepara il dataset dividendolo in train, validation e test
     
@@ -210,10 +208,6 @@ def prepare_dataset(img_dir, mask_dir, class_rgb_values, batch_size=8, test_size
         test_size (float): Frazione del dataset per il test
         val_size (float): Frazione del dataset per la validazione
         num_workers (int): Numero di worker per il dataloader
-        augmentation (bool): Se applicare data augmentation al training set
-        
-    Ritorna:
-        train_loader, val_loader, test_loader: Dataloader per train, validation e test
     """
     # Definisci le trasformazioni base (normalizzazione)
     transform = transforms.Compose([
@@ -221,17 +215,13 @@ def prepare_dataset(img_dir, mask_dir, class_rgb_values, batch_size=8, test_size
         transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
     ])
     
-    # Non usiamo più trasformazioni specifiche per le maschere perché 
-    # ora sono gestite all'interno del metodo apply_augmentation
-    
     # Carica tutti i dati
     full_dataset = SegmentationDataset(
         img_dir=img_dir,
         mask_dir=mask_dir,
         class_rgb_values=class_rgb_values,
         transform=transform,
-        mask_transform=None,
-        augmentation=False  # No augmentation per il dataset completo
+        mask_transform=None
     )
     
     # Ottieni tutti gli indici
@@ -244,13 +234,13 @@ def prepare_dataset(img_dir, mask_dir, class_rgb_values, batch_size=8, test_size
     print(f"Divisione dataset: {len(train_indices)} train, {len(val_indices)} validation, {len(test_indices)} test")
     
     # Crea dataset specializzati
+    
     train_dataset = SegmentationDataset(
         img_dir=img_dir,
         mask_dir=mask_dir,
         class_rgb_values=class_rgb_values,
         transform=transform,
-        mask_transform=None,
-        augmentation=augmentation  # Applica augmentation solo al training set
+        mask_transform=None
     )
     
     # Crea subset

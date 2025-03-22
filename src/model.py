@@ -5,14 +5,11 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import DataLoader
-import torchvision.transforms as transforms
 from transformers import SegformerForSemanticSegmentation, SegformerConfig
 import wandb
 from tqdm import tqdm
-import matplotlib.pyplot as plt
-from sklearn.metrics import confusion_matrix
-import seaborn as sns
 import torch.nn.functional as F
+from torch.cuda.amp import GradScaler, autocast
 
 # Imposta seed per riproducibilità
 def set_seed(seed=42):
@@ -34,7 +31,7 @@ class SegFormerModel(nn.Module):
         
         # Inizializza il modello
         if pretrained:
-            # Utilizza un modello pre-addestrato (SegFormer-B0 per default)
+            # Utilizza un modello pre-addestrato
             self.segformer = SegformerForSemanticSegmentation.from_pretrained(
                 "nvidia/segformer-b0-finetuned-ade-512-512",
                 num_labels=num_classes,
@@ -48,10 +45,6 @@ class SegFormerModel(nn.Module):
                 num_labels=num_classes,
                 id2label=id2label,
                 label2id=label2id,
-                # Puoi personalizzare la configurazione se necessario
-                # hidden_sizes=[32, 64, 160, 256],
-                # depths=[2, 2, 2, 2],
-                # decoder_hidden_size=256,
             )
             self.segformer = SegformerForSemanticSegmentation(config)
     
@@ -72,30 +65,13 @@ class SegmentationTrainer:
                  weight_decay=1e-4,
                  project_name='segmentation',
                  experiment_name='segformer'):
-        """
-        Trainer per modelli di segmentazione con integrazione Weights & Biases
         
-        Parametri:
-            model: Modello di segmentazione
-            train_loader: Dataloader per il training
-            val_loader: Dataloader per la validazione
-            test_loader: Dataloader per il test
-            device: Dispositivo su cui eseguire il training ('cuda' o 'cpu')
-            class_weights: Pesi per le classi (per bilanciare dataset sbilanciati)
-            learning_rate: Learning rate per l'ottimizzatore
-            weight_decay: Weight decay per l'ottimizzatore
-            project_name: Nome del progetto su W&B
-            experiment_name: Nome dell'esperimento su W&B
-        """
-        self.model = model
+        self.model = model.to(device)
         self.train_loader = train_loader
         self.val_loader = val_loader
         self.test_loader = test_loader
         self.device = device
         self.class_weights = class_weights
-        
-        # Sposta il modello sul dispositivo
-        self.model = self.model.to(self.device)
         
         # Definizione loss function
         if class_weights is not None:
@@ -124,19 +100,14 @@ class SegmentationTrainer:
         self.project_name = project_name
         self.experiment_name = experiment_name
         
-        # Metriche da tracciare
+        # Metriche
         self.best_val_iou = 0.0
         self.best_epoch = 0
         
-    def train(self, epochs=100, save_dir='checkpoints', log_interval=10):
-        """
-        Esegue il training del modello
+        # Scaler per mixed precision
+        self.scaler = GradScaler()
         
-        Parametri:
-            epochs: Numero di epoche
-            save_dir: Directory in cui salvare i checkpoints
-            log_interval: Intervallo di logging
-        """
+    def train(self, epochs=100, save_dir='checkpoints', log_interval=20):
         # Inizializza Weights & Biases
         wandb.init(project=self.project_name, name=self.experiment_name)
         
@@ -158,33 +129,33 @@ class SegmentationTrainer:
                 images = batch['image'].to(self.device)
                 masks = batch['mask'].to(self.device)
                 
-                # Forward pass
+                # Forward pass con mixed precision
                 self.optimizer.zero_grad()
-                outputs = self.model(images)
-
-                if masks.shape[1:] != outputs.shape[2:]:
-                    # Le maschere devono essere prima convertite in float per l'interpolazione
-                    # Aggiungiamo un canale (unsqueeze) perché interpolate richiede un tensore 4D [B, C, H, W]
-                    masks_resized = F.interpolate(
-                        masks.float().unsqueeze(1),  # Aggiunge dimensione canale [B, 1, H, W]
-                        size=outputs.shape[2:],      # Target size [64, 64]
-                        mode='nearest'               # Usa 'nearest' per preservare le classi
-                    ).squeeze(1).long()              # Rimuove la dimensione canale e converte in long
-                else:
-                    masks_resized = masks
-
-                # Calcola la loss
-                loss = self.criterion(outputs, masks_resized)
                 
-                # Backward pass
-                loss.backward()
-                self.optimizer.step()
+                with autocast():
+                    outputs = self.model(images)
+                    
+                    if masks.shape[1:] != outputs.shape[2:]:
+                        masks_resized = F.interpolate(
+                            masks.unsqueeze(1).float(),
+                            size=outputs.shape[2:],
+                            mode='nearest'
+                        ).squeeze(1).long()
+                    else:
+                        masks_resized = masks
+                        
+                    loss = self.criterion(outputs, masks_resized)
+
+                # Backward con lo Scaler
+                self.scaler.scale(loss).backward()
+                self.scaler.step(self.optimizer)
+                self.scaler.update()
                 
-                # Aggiorna la loss
+                # Calcola metriche su CPU per liberare memoria
+                with torch.no_grad():
+                    batch_iou, batch_dice = self.calculate_metrics(outputs.detach(), masks_resized.detach())
+                
                 train_loss += loss.item()
-                
-                # Calcola metriche
-                batch_iou, batch_dice = self.calculate_metrics(outputs, masks_resized)
                 train_iou += batch_iou
                 train_dice += batch_dice
                 
@@ -195,30 +166,41 @@ class SegmentationTrainer:
                     'Dice': batch_dice
                 })
                 
-                # Log di esempi ogni log_interval
-                if batch_idx % log_interval == 0:
-                    self.log_predictions(images, masks_resized, outputs, phase='train')
+                # Log meno frequenti per risparmiare memoria
+                if batch_idx % 50 == 0:
+                    wandb.log({
+                        'batch/train_loss': loss.item(),
+                        'batch/train_iou': batch_iou,
+                        'batch/train_dice': batch_dice,
+                        'batch_step': epoch * len(self.train_loader) + batch_idx
+                    })
+                
+                # Log di esempi solo occasionalmente
+                if batch_idx % log_interval == 0 and batch_idx > 0:
+                    self.log_predictions(images[:2], masks_resized[:2], outputs[:2], phase='train', max_samples=2)
+                
+                # Libera memoria
+                del images, masks, masks_resized, outputs, loss
+                torch.cuda.empty_cache()
                     
             # Calcola medie
             train_loss /= len(self.train_loader)
             train_iou /= len(self.train_loader)
             train_dice /= len(self.train_loader)
             
-            # Validazione
+            # Validazione con minor uso di memoria
             val_loss, val_iou, val_dice = self.validate()
             
             # Aggiorna lo scheduler
             self.scheduler.step(val_loss)
             
-            # Log su Weights & Biases
+            # Log su Weights & Biases (solo metriche essenziali)
             wandb.log({
                 'epoch': epoch + 1,
-                'train_loss': train_loss,
-                'train_iou': train_iou,
-                'train_dice': train_dice,
-                'val_loss': val_loss,
-                'val_iou': val_iou,
-                'val_dice': val_dice,
+                'epoch/train_loss': train_loss,
+                'epoch/train_iou': train_iou,
+                'epoch/val_loss': val_loss,
+                'epoch/val_iou': val_iou,
                 'learning_rate': self.optimizer.param_groups[0]['lr']
             })
             
@@ -229,50 +211,36 @@ class SegmentationTrainer:
 
                 encoder_name = self.model.segformer.config.model_type
                 num_classes = self.model.segformer.config.num_labels
-                lr = self.optimizer.param_groups[0]['lr']
-
-                checkpoint_filename = f"{self.experiment_name}_enc-{encoder_name}_cls-{num_classes}_ep-{epoch+1}_iou-{val_iou:.4f}_dice-{val_dice:.4f}_lr-{lr:.1e}.pth"
                 
+                checkpoint_filename = f"{self.experiment_name}_ep-{epoch+1}_iou-{val_iou:.4f}.pth"
                 checkpoint_path = os.path.join(save_dir, checkpoint_filename)
+                
+                # Salva solo le informazioni essenziali
                 torch.save({
                     'epoch': epoch + 1,
                     'model_state_dict': self.model.state_dict(),
-                    'optimizer_state_dict': self.optimizer.state_dict(),
                     'val_iou': val_iou,
-                    'val_dice': val_dice,
-                    'hyperparams': {
-                        'learning_rate': lr,
-                        'weight_decay': self.optimizer.param_groups[0]['weight_decay'],
-                        'model_type': encoder_name,
-                        'num_classes': num_classes,
-                        'class_weights': self.class_weights.cpu().numpy().tolist() if self.class_weights is not None else None
-                    }
                 }, checkpoint_path)
                 
-                wandb.save(checkpoint_path)
                 print(f"Salvato il miglior modello con IoU: {val_iou:.4f}")
             
             # Stampa risultati dell'epoca
             print(f"Epoch {epoch+1}/{epochs} - "
-                  f"Train Loss: {train_loss:.4f}, IoU: {train_iou:.4f}, Dice: {train_dice:.4f} | "
-                  f"Val Loss: {val_loss:.4f}, IoU: {val_iou:.4f}, Dice: {val_dice:.4f}")
+                  f"Train Loss: {train_loss:.4f}, IoU: {train_iou:.4f} | "
+                  f"Val Loss: {val_loss:.4f}, IoU: {val_iou:.4f}")
+            
+            # Forza pulizia memoria
+            torch.cuda.empty_cache()
         
-        # Test finale
+        # Test finale se necessario
         if self.test_loader is not None:
             self.test()
         
         # Chiudi Weights & Biases
         wandb.finish()
-        
+
     def validate(self):
-        """
-        Valuta il modello sul set di validazione
-        
-        Ritorna:
-            val_loss: Loss media
-            val_iou: IoU medio
-            val_dice: Dice medio
-        """
+        """Valuta il modello sul set di validazione con gestione efficiente della memoria"""
         self.model.eval()
         val_loss = 0.0
         val_iou = 0.0
@@ -288,12 +256,16 @@ class SegmentationTrainer:
                 # Forward pass
                 outputs = self.model(images)
 
-                masks = F.interpolate(masks.unsqueeze(1).float(), size=(64, 64), mode='nearest').squeeze(1).long()
+                # Resize masks se necessario
+                if masks.shape[1:] != outputs.shape[2:]:
+                    masks = F.interpolate(
+                        masks.unsqueeze(1).float(), 
+                        size=outputs.shape[2:], 
+                        mode='nearest'
+                    ).squeeze(1).long()
                 
                 # Calcola la loss
                 loss = self.criterion(outputs, masks)
-                
-                # Aggiorna la loss
                 val_loss += loss.item()
                 
                 # Calcola metriche
@@ -301,16 +273,18 @@ class SegmentationTrainer:
                 val_iou += batch_iou
                 val_dice += batch_dice
                 
-                # Aggiorna la progress bar
                 val_pbar.set_postfix({
                     'loss': loss.item(),
-                    'IoU': batch_iou,
-                    'Dice': batch_dice
+                    'IoU': batch_iou
                 })
                 
-                # Log del primo batch
+                # Log solo del primo batch per risparmiare memoria
                 if batch_idx == 0:
-                    self.log_predictions(images, masks, outputs, phase='val')
+                    self.log_predictions(images[:2], masks[:2], outputs[:2], phase='val', max_samples=2)
+                
+                # Libera memoria
+                del images, masks, outputs, loss
+                torch.cuda.empty_cache()
         
         # Calcola medie
         val_loss /= len(self.val_loader)
@@ -320,15 +294,12 @@ class SegmentationTrainer:
         return val_loss, val_iou, val_dice
     
     def test(self):
-        """
-        Valuta il modello sul set di test
-        """
+        """Versione ottimizzata del test"""
         self.model.eval()
         test_loss = 0.0
         test_iou = 0.0
         test_dice = 0.0
         
-        # Prepara la matrice di confusione
         num_classes = self.model.segformer.config.num_labels
         conf_matrix = np.zeros((num_classes, num_classes))
         
@@ -342,21 +313,16 @@ class SegmentationTrainer:
                 # Forward pass
                 outputs = self.model(images)
 
+                # Resize masks se necessario
                 if masks.shape[1:] != outputs.shape[2:]:
-                    # Le maschere devono essere prima convertite in float per l'interpolazione
-                    # Aggiungiamo un canale (unsqueeze) perché interpolate richiede un tensore 4D [B, C, H, W]
                     masks = F.interpolate(
-                        masks.float().unsqueeze(1),  # Aggiunge dimensione canale [B, 1, H, W]
-                        size=outputs.shape[2:],      # Target size [64, 64]
-                        mode='nearest'               # Usa 'nearest' per preservare le classi
-                    ).squeeze(1).long()              # Rimuove la dimensione canale e converte in long
-                else:
-                    masks = masks
+                        masks.float().unsqueeze(1), 
+                        size=outputs.shape[2:], 
+                        mode='nearest'
+                    ).squeeze(1).long()
                 
                 # Calcola la loss
                 loss = self.criterion(outputs, masks)
-                
-                # Aggiorna la loss
                 test_loss += loss.item()
                 
                 # Calcola metriche
@@ -364,81 +330,44 @@ class SegmentationTrainer:
                 test_iou += batch_iou
                 test_dice += batch_dice
                 
-                # Aggiorna la progress bar
                 test_pbar.set_postfix({
                     'loss': loss.item(),
-                    'IoU': batch_iou,
-                    'Dice': batch_dice
+                    'IoU': batch_iou
                 })
                 
-                # Log esempi di predizione
-                if batch_idx % 5 == 0:
-                    self.log_predictions(images, masks, outputs, phase='test')
+                # Log meno frequente
+                if batch_idx % 10 == 0:
+                    self.log_predictions(images[:1], masks[:1], outputs[:1], phase='test', max_samples=1)
                 
-                # Aggiorna la matrice di confusione
-                preds = torch.argmax(outputs, dim=1).detach().cpu().numpy()
-                masks_np = masks.detach().cpu().numpy()
-                
-                for cl in range(num_classes):
-                    conf_matrix[cl] += np.bincount(
-                        (masks_np == cl).flatten() * (num_classes) + preds.flatten(),
-                        minlength=num_classes**2
-                    ).reshape(num_classes, num_classes)[cl]
+                # Libera memoria
+                del images, masks, outputs, loss
+                torch.cuda.empty_cache()
         
         # Calcola medie
         test_loss /= len(self.test_loader)
         test_iou /= len(self.test_loader)
         test_dice /= len(self.test_loader)
         
-        # Calcola precisione e recall per classe
-        precision = np.zeros(num_classes)
-        recall = np.zeros(num_classes)
-        
-        for cl in range(num_classes):
-            precision[cl] = conf_matrix[cl, cl] / (conf_matrix[:, cl].sum() + 1e-10)
-            recall[cl] = conf_matrix[cl, cl] / (conf_matrix[cl, :].sum() + 1e-10)
-        
-        # Normalizza la matrice di confusione
-        conf_matrix_norm = conf_matrix / (conf_matrix.sum(axis=1, keepdims=True) + 1e-10)
-        
-        # Crea e salva la figura della matrice di confusione
-        plt.figure(figsize=(10, 8))
-        sns.heatmap(conf_matrix_norm, annot=True, fmt='.2f', cmap='Blues')
-        plt.xlabel('Predicted')
-        plt.ylabel('True')
-        plt.title('Confusion Matrix')
-        plt.savefig('confusion_matrix.png')
-        
-        # Log su W&B
+        # Log minimo su W&B
         wandb.log({
             'test_loss': test_loss,
             'test_iou': test_iou,
-            'test_dice': test_dice,
-            'confusion_matrix': wandb.Image('confusion_matrix.png'),
-            'class_precision': {f'precision_class_{i}': p for i, p in enumerate(precision)},
-            'class_recall': {f'recall_class_{i}': r for i, r in enumerate(recall)}
+            'test_dice': test_dice
         })
         
-        # Stampa risultati finali
         print(f"Test - Loss: {test_loss:.4f}, IoU: {test_iou:.4f}, Dice: {test_dice:.4f}")
     
     def calculate_metrics(self, outputs, targets):
-        """
-        Calcola le metriche di segmentazione
+        """Calcola le metriche di segmentazione in modo efficiente per la memoria"""
+        # Porta i tensori su CPU per liberare memoria GPU
+        outputs_cpu = outputs.detach().cpu()
+        targets_cpu = targets.detach().cpu()
         
-        Parametri:
-            outputs: Output del modello
-            targets: Ground truth
-            
-        Ritorna:
-            iou: Intersection over Union
-            dice: Dice coefficient
-        """
         # Ottieni le predizioni
-        preds = torch.argmax(outputs, dim=1)
+        preds = torch.argmax(outputs_cpu, dim=1)
         
         # Calcola IoU e Dice per ogni classe
-        num_classes = outputs.size(1)
+        num_classes = outputs_cpu.size(1)
         iou_sum = 0.0
         dice_sum = 0.0
         
@@ -448,7 +377,7 @@ class SegmentationTrainer:
         
         for c in range(start_class, num_classes):
             pred_mask = (preds == c)
-            target_mask = (targets == c)
+            target_mask = (targets_cpu == c)
             
             intersection = (pred_mask & target_mask).sum().float()
             union = (pred_mask | target_mask).sum().float()
@@ -468,67 +397,70 @@ class SegmentationTrainer:
         iou = iou_sum / (valid_classes + 1e-10)
         dice = dice_sum / (valid_classes + 1e-10)
         
+        # Libera memoria
+        del outputs_cpu, targets_cpu, preds
+        
         return iou, dice
     
-    def log_predictions(self, images, masks, outputs, phase='train', max_samples=4):
-        n_samples = min(max_samples, images.size(0))
-        preds = torch.argmax(outputs[:n_samples], dim=1).detach().cpu().numpy()
-        masks = masks[:n_samples].detach().cpu().numpy()
+    def log_predictions(self, images, masks, outputs, phase='train', max_samples=2):
+        """Versione ottimizzata per logging con minor uso di memoria"""
+        import matplotlib.pyplot as plt
         
+        n_samples = min(max_samples, images.size(0))
+        
+        # Processa su CPU per risparmiare memoria GPU
+        images_cpu = images[:n_samples].detach().cpu()
+        masks_cpu = masks[:n_samples].detach().cpu()
+        outputs_cpu = outputs[:n_samples].detach().cpu()
+        
+        # Ottieni predizioni
+        preds = torch.argmax(outputs_cpu, dim=1).numpy()
+        masks_np = masks_cpu.numpy()
+        
+        # Denormalizza le immagini
         mean = torch.tensor([0.485, 0.456, 0.406]).view(3, 1, 1)
         std = torch.tensor([0.229, 0.224, 0.225]).view(3, 1, 1)
         
-        images_np = []
         for i in range(n_samples):
-            img = images[i].detach().cpu()
+            plt.figure(figsize=(12, 4))
+            
+            # Immagine
+            img = images_cpu[i]
             img = img * std + mean
             img = img.permute(1, 2, 0).numpy()
             img = np.clip(img, 0, 1)
-            images_np.append(img)
-        
-        num_classes = outputs.size(1)
-        cmap = plt.cm.get_cmap('tab10', num_classes)
-        
-        for i in range(n_samples):
-            fig, axs = plt.subplots(1, 3, figsize=(15, 5))
             
-            axs[0].imshow(images_np[i])
-            axs[0].set_title('Input Image')
-            axs[0].axis('off')
+            plt.subplot(1, 3, 1)
+            plt.imshow(img)
+            plt.title('Input')
+            plt.axis('off')
             
-            axs[1].imshow(masks[i], cmap=cmap, vmin=0, vmax=num_classes-1)
-            axs[1].set_title('Ground Truth')
-            axs[1].axis('off')
+            # Ground truth
+            plt.subplot(1, 3, 2)
+            plt.imshow(masks_np[i], cmap='tab10')
+            plt.title('Ground Truth')
+            plt.axis('off')
             
-            axs[2].imshow(preds[i], cmap=cmap, vmin=0, vmax=num_classes-1)
-            axs[2].set_title('Prediction')
-            axs[2].axis('off')
+            # Predizione
+            plt.subplot(1, 3, 3)
+            plt.imshow(preds[i], cmap='tab10')
+            plt.title('Prediction')
+            plt.axis('off')
             
             plt.tight_layout()
             
-            # Log direttamente a W&B usando plt.gcf()
-            wandb.log({f"{phase}_predictions_{i}": wandb.Image(plt.gcf())})
+            # Log a W&B
+            wandb.log({f"{phase}_prediction": wandb.Image(plt.gcf())})
             plt.close()
+        
+        # Libera memoria
+        del images_cpu, masks_cpu, outputs_cpu, preds
 
-# Utilizzo del trainer
+# Funzione principale per training
 def train_segformer(train_loader, val_loader, test_loader=None, num_classes=4, 
                     epochs=50, learning_rate=1e-4, weight_decay=1e-4, 
                     device='cuda', class_weights=None, pretrained=True):
-    """
-    Funzione principale per il training di SegFormer
     
-    Parametri:
-        train_loader: Dataloader per il training
-        val_loader: Dataloader per la validazione
-        test_loader: Dataloader per il test
-        num_classes: Numero di classi
-        epochs: Numero di epoche
-        learning_rate: Learning rate
-        weight_decay: Weight decay
-        device: Dispositivo (cuda/cpu)
-        class_weights: Pesi delle classi
-        pretrained: Se utilizzare un modello pre-addestrato
-    """
     # Imposta seed per riproducibilità
     set_seed(42)
     

@@ -1,0 +1,5 @@
+/tmp/ipykernel_457139/3605462065.py:151: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  scaler = GradScaler()
+Epoch 1/50 [Train]:   0%|          | 0/57 [00:00<?, ?it/s]/tmp/ipykernel_457139/3605462065.py:166: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast():
+Epoch 1/50 [Train]:   0%|          | 0/57 [00:15<?, ?it/s]
