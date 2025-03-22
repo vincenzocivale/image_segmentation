@@ -1,0 +1,12 @@
+{"time":"2025-03-22T19:10:23.723852947+01:00","level":"INFO","msg":"stream: starting","core version":"0.19.8","symlink path":"/home/inside-tech/Desktop/image_segmentation/wandb/run-20250322_191023-66ipj95r/logs/debug-core.log"}
+{"time":"2025-03-22T19:10:23.826164837+01:00","level":"INFO","msg":"created new stream","id":"66ipj95r"}
+{"time":"2025-03-22T19:10:23.826180971+01:00","level":"INFO","msg":"stream: started","id":"66ipj95r"}
+{"time":"2025-03-22T19:10:23.82622923+01:00","level":"INFO","msg":"writer: Do: started","stream_id":"66ipj95r"}
+{"time":"2025-03-22T19:10:23.826228534+01:00","level":"INFO","msg":"handler: started","stream_id":"66ipj95r"}
+{"time":"2025-03-22T19:10:23.826241035+01:00","level":"INFO","msg":"sender: started","stream_id":"66ipj95r"}
+{"time":"2025-03-22T19:10:24.070586911+01:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-03-22T19:10:44.51002655+01:00","level":"INFO","msg":"Pausing system monitor"}
+{"time":"2025-03-22T19:10:44.550891844+01:00","level":"INFO","msg":"Resuming system monitor"}
+{"time":"2025-03-22T19:10:45.516955709+01:00","level":"INFO","msg":"Pausing system monitor"}
+{"time":"2025-03-22T19:11:21.142827208+01:00","level":"INFO","msg":"Resuming system monitor"}
+{"time":"2025-03-22T19:11:21.365215104+01:00","level":"INFO","msg":"Pausing system monitor"}

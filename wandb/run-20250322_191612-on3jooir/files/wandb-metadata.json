@@ -1,0 +1,42 @@
+{
+  "os": "Linux-6.11.0-19-generic-x86_64-with-glibc2.39",
+  "python": "CPython 3.12.3",
+  "startedAt": "2025-03-22T18:16:12.730831Z",
+  "program": "/home/inside-tech/Desktop/image_segmentation/main.ipynb",
+  "codePath": "main.ipynb",
+  "git": {
+    "remote": "https://github.com/vincenzocivale/image_segmentation.git",
+    "commit": "5c0cf38f3c6b670ec6b7238495452e73c1ef4544"
+  },
+  "email": "vincenzo.civale@edu.unifi.it",
+  "root": "/home/inside-tech/Desktop/image_segmentation",
+  "host": "trilli-laser2",
+  "executable": "/home/inside-tech/Desktop/image_segmentation/.venv/bin/python",
+  "codePathLocal": "main.ipynb",
+  "cpu_count": 8,
+  "cpu_count_logical": 16,
+  "gpu": "NVIDIA GeForce RTX 3050",
+  "gpu_count": 1,
+  "disk": {
+    "/": {
+      "total": "489997189120",
+      "used": "159965048832"
+    }
+  },
+  "memory": {
+    "total": "33527050240"
+  },
+  "cpu": {
+    "count": 8,
+    "countLogical": 16
+  },
+  "gpu_nvidia": [
+    {
+      "name": "NVIDIA GeForce RTX 3050",
+      "memoryTotal": "6442450944",
+      "cudaCores": 2304,
+      "architecture": "Ampere"
+    }
+  ],
+  "cudaVersion": "12.4"
+}

@@ -54,11 +54,17 @@ class SegmentationDataset(Dataset):
             
         for class_idx in self.class_rgb_values.keys():
             mask_name = os.path.splitext(img_name)[0] + f'_class{class_idx}.png'
-            mask_path = os.path.join(self.mask_dir, str(class_idx), mask_name)
+            mask_path = os.path.join(self.mask_dir, f"class_{class_idx}", mask_name)
             if os.path.exists(mask_path):
                 class_mask = Image.open(mask_path).convert('L')
-                class_mask = np.array(class_mask)
+                class_mask = np.array(class_mask, dtype=np.uint8)
                 mask[class_mask > 0] = class_idx
+            else:
+                # print(f"Maschera non trovata per classe {class_idx} e immagine {img_name}")
+                pass
+        
+        if np.all(mask == 0):
+            raise ValueError(f"Maschera vuota per l'immagine {img_name}")
 
         if self.transform:
             image = self.transform(image)
@@ -190,7 +196,7 @@ class SegmentationDataset(Dataset):
         return image, mask
 
 
-def prepare_dataset(img_dir, mask_dir, class_rgb_values, batch_size=8, test_size=0.2, val_size=0.1, num_workers=4):
+def prepare_dataset(img_dir, mask_dir, class_rgb_values, batch_size=8, test_size=0.2, val_size=0.1, num_workers=4, img_size=(224, 224)):
     """
     Prepara il dataset dividendolo in train, validation e test
     
@@ -205,6 +211,7 @@ def prepare_dataset(img_dir, mask_dir, class_rgb_values, batch_size=8, test_size
     """
     # Definisci le trasformazioni base (normalizzazione)
     transform = transforms.Compose([
+        transforms.Resize(img_size),  
         transforms.ToTensor(),
         transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
     ])
@@ -291,3 +298,21 @@ def visualize_sample(dataset, idx=0):
     
     plt.tight_layout()
     plt.show()
+
+if __name__ == '__main__':
+    # Definisci le classi e i valori RGB
+    class_rgb_values = {
+        1: [0, 0, 255],      # Class 0 is represented by blue pixels
+        2: [0, 255, 0],      # Class 1 is represented by green pixels
+        3: [255, 0, 0],      # Class 2 is represented by red pixels
+        4: [255, 85, 255],    # Class 3 is represented by pink pixels
+        4: [0, 170, 255]    # Class 4 
+    }
+    
+    # Prepara il dataset
+    img_dir = "/home/inside-tech/Desktop/image_segmentation/data/raw/_4_classi/images"
+    mask_dir = "/home/inside-tech/Desktop/image_segmentation/masks"
+    train_loader, val_loader, test_loader, full_dataset = prepare_dataset(
+    img_dir, mask_dir, class_rgb_values, batch_size=8, test_size=0.2, val_size=0.1, num_workers=4)
+    
+    

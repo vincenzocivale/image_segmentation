@@ -10,6 +10,8 @@ import wandb
 from tqdm import tqdm
 import torch.nn.functional as F
 from torch.cuda.amp import GradScaler, autocast
+import torchvision.models.segmentation as segmentation
+import torchvision
 
 # Imposta seed per riproducibilità
 def set_seed(seed=42):
@@ -20,40 +22,51 @@ def set_seed(seed=42):
     torch.backends.cudnn.deterministic = True
 
 # Definizione del modello SegFormer
-class SegFormerModel(nn.Module):
-    def __init__(self, num_classes, id2label=None, pretrained=True):
-        super(SegFormerModel, self).__init__()
+# class SegFormerModel(nn.Module):
+#     def __init__(self, num_classes, id2label=None, pretrained=True):
+#         super(SegFormerModel, self).__init__()
         
-        # Configura il mapping delle classi
-        if id2label is None:
-            id2label = {i: f"class_{i}" for i in range(num_classes)}
-        label2id = {v: k for k, v in id2label.items()}
+#         # Configura il mapping delle classi
+#         if id2label is None:
+#             id2label = {i: f"class_{i}" for i in range(num_classes)}
+#         label2id = {v: k for k, v in id2label.items()}
         
-        # Inizializza il modello
-        if pretrained:
-            # Utilizza un modello pre-addestrato
-            self.segformer = SegformerForSemanticSegmentation.from_pretrained(
-                "nvidia/segformer-b0-finetuned-ade-512-512",
-                num_labels=num_classes,
-                id2label=id2label,
-                label2id=label2id,
-                ignore_mismatched_sizes=True
-            )
-        else:
-            # Inizializza un modello da zero
-            config = SegformerConfig(
-                num_labels=num_classes,
-                id2label=id2label,
-                label2id=label2id,
-            )
-            self.segformer = SegformerForSemanticSegmentation(config)
+#         # Inizializza il modello
+#         if pretrained:
+#             # Utilizza un modello pre-addestrato
+#             self.segformer = SegformerForSemanticSegmentation.from_pretrained(
+#                 "nvidia/segformer-b0-finetuned-ade-512-512",
+#                 num_labels=num_classes,
+#                 id2label=id2label,
+#                 label2id=label2id,
+#                 ignore_mismatched_sizes=True
+#             )
+#         else:
+#             # Inizializza un modello da zero
+#             config = SegformerConfig(
+#                 num_labels=num_classes,
+#                 id2label=id2label,
+#                 label2id=label2id,
+#             )
+#             self.segformer = SegformerForSemanticSegmentation(config)
     
-    def forward(self, pixel_values):
-        outputs = self.segformer(pixel_values=pixel_values)
-        return outputs.logits
+#     def forward(self, pixel_values):
+#         outputs = self.segformer(pixel_values=pixel_values)
+#         return outputs.logits
+
+class DeepLabV3_MobileNetV2(nn.Module):
+    def __init__(self, num_classes):
+        super(DeepLabV3_MobileNetV2, self).__init__()
+        # Usa direttamente il modello deeplabv3_mobilenet_v3_large
+        self.model = segmentation.deeplabv3_mobilenet_v3_large(pretrained=False)
+        # Modifica il classificatore per il numero corretto di classi
+        self.model.classifier[4] = nn.Conv2d(256, num_classes, kernel_size=(1, 1))
+    
+    def forward(self, x):
+        return self.model(x)['out']
 
 # Classe per la gestione del training
-class SegmentationTrainer:
+class ModelTrainer:
     def __init__(self, 
                  model, 
                  train_loader, 
@@ -104,8 +117,16 @@ class SegmentationTrainer:
         self.best_val_iou = 0.0
         self.best_epoch = 0
         
-        # Scaler per mixed precision
-        self.scaler = GradScaler()
+    def check_mask_values(self, mask_tensor, num_classes):
+        """Verifica che i valori della maschera siano validi"""
+        min_val = mask_tensor.min().item()
+        max_val = mask_tensor.max().item()
+        
+        if min_val < 0 or max_val >= num_classes:
+            raise ValueError(f"Valori della maschera fuori range: min={min_val}, max={max_val}, num_classes={num_classes}")
+        
+        return True
+    
         
     def train(self, epochs=100, save_dir='checkpoints', log_interval=20):
         # Inizializza Weights & Biases
@@ -114,9 +135,7 @@ class SegmentationTrainer:
         # Configura la directory per i checkpoints
         os.makedirs(save_dir, exist_ok=True)
         
-        # Training loop
         for epoch in range(epochs):
-            # Training
             self.model.train()
             train_loss = 0.0
             train_iou = 0.0
@@ -128,28 +147,28 @@ class SegmentationTrainer:
             for batch_idx, batch in enumerate(train_pbar):
                 images = batch['image'].to(self.device)
                 masks = batch['mask'].to(self.device)
+
+                self.check_mask_values(masks, 4)
                 
-                # Forward pass con mixed precision
                 self.optimizer.zero_grad()
                 
-                with autocast():
-                    outputs = self.model(images)
+                # Senza autocast
+                outputs = self.model(images)
+                
+                if masks.shape[1:] != outputs.shape[2:]:
+                    masks_resized = F.interpolate(
+                        masks.unsqueeze(1).float(),
+                        size=outputs.shape[2:],
+                        mode='nearest'
+                    ).squeeze(1).long()
+                else:
+                    masks_resized = masks
                     
-                    if masks.shape[1:] != outputs.shape[2:]:
-                        masks_resized = F.interpolate(
-                            masks.unsqueeze(1).float(),
-                            size=outputs.shape[2:],
-                            mode='nearest'
-                        ).squeeze(1).long()
-                    else:
-                        masks_resized = masks
-                        
-                    loss = self.criterion(outputs, masks_resized)
-
-                # Backward con lo Scaler
-                self.scaler.scale(loss).backward()
-                self.scaler.step(self.optimizer)
-                self.scaler.update()
+                loss = self.criterion(outputs, masks_resized)
+                
+                # Backward senza GradScaler
+                loss.backward()
+                self.optimizer.step()
                 
                 # Calcola metriche su CPU per liberare memoria
                 with torch.no_grad():
@@ -182,7 +201,7 @@ class SegmentationTrainer:
                 # Libera memoria
                 del images, masks, masks_resized, outputs, loss
                 torch.cuda.empty_cache()
-                    
+            
             # Calcola medie
             train_loss /= len(self.train_loader)
             train_iou /= len(self.train_loader)
@@ -208,9 +227,14 @@ class SegmentationTrainer:
             if val_iou > self.best_val_iou:
                 self.best_val_iou = val_iou
                 self.best_epoch = epoch + 1
-
-                encoder_name = self.model.segformer.config.model_type
-                num_classes = self.model.segformer.config.num_labels
+                
+                # Verifica se l'attributo segformer esiste nel modello
+                if hasattr(self.model, 'segformer'):
+                    encoder_name = self.model.segformer.config.model_type
+                    num_classes = self.model.segformer.config.num_labels
+                else:
+                    encoder_name = "custom_model"
+                    num_classes = "unknown"
                 
                 checkpoint_filename = f"{self.experiment_name}_ep-{epoch+1}_iou-{val_iou:.4f}.pth"
                 checkpoint_path = os.path.join(save_dir, checkpoint_filename)
@@ -226,8 +250,8 @@ class SegmentationTrainer:
             
             # Stampa risultati dell'epoca
             print(f"Epoch {epoch+1}/{epochs} - "
-                  f"Train Loss: {train_loss:.4f}, IoU: {train_iou:.4f} | "
-                  f"Val Loss: {val_loss:.4f}, IoU: {val_iou:.4f}")
+                f"Train Loss: {train_loss:.4f}, IoU: {train_iou:.4f} | "
+                f"Val Loss: {val_loss:.4f}, IoU: {val_iou:.4f}")
             
             # Forza pulizia memoria
             torch.cuda.empty_cache()
@@ -238,7 +262,6 @@ class SegmentationTrainer:
         
         # Chiudi Weights & Biases
         wandb.finish()
-
     def validate(self):
         """Valuta il modello sul set di validazione con gestione efficiente della memoria"""
         self.model.eval()
@@ -468,10 +491,11 @@ def train_segformer(train_loader, val_loader, test_loader=None, num_classes=4,
     id2label = {i: f"class_{i}" for i in range(num_classes)}
     
     # Crea il modello
-    model = SegFormerModel(num_classes=num_classes, id2label=id2label, pretrained=pretrained)
+    # model = SegFormerModel(num_classes=num_classes, id2label=id2label, pretrained=pretrained)
+    model = DeepLabV3_MobileNetV2(num_classes=num_classes)
     
     # Configura il trainer
-    trainer = SegmentationTrainer(
+    trainer = ModelTrainer(
         model=model,
         train_loader=train_loader,
         val_loader=val_loader,
