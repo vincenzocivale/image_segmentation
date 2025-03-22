@@ -1,0 +1,8 @@
+2025-03-22 17:44:17,678 INFO    MainThread:475082 [wandb_init.py:setup_run_log_directory():647] Logging user logs to /home/inside-tech/Desktop/image_segmentation/wandb/run-20250322_174417-my1048l4/logs/debug.log
+2025-03-22 17:44:17,678 INFO    MainThread:475082 [wandb_init.py:setup_run_log_directory():648] Logging internal logs to /home/inside-tech/Desktop/image_segmentation/wandb/run-20250322_174417-my1048l4/logs/debug-internal.log
+2025-03-22 17:44:17,678 INFO    MainThread:475082 [wandb_init.py:init():761] calling init triggers
+2025-03-22 17:44:17,678 INFO    MainThread:475082 [wandb_init.py:init():766] wandb.init called with sweep_config: {}
+config: {'_wandb': {}}
+2025-03-22 17:44:17,678 INFO    MainThread:475082 [wandb_init.py:init():776] wandb.init() called while a run is active
+2025-03-22 17:44:18,063 INFO    MainThread:475082 [jupyter.py:save_ipynb():386] not saving jupyter notebook
+2025-03-22 17:44:18,063 INFO    MainThread:475082 [wandb_init.py:_pause_backend():564] pausing backend

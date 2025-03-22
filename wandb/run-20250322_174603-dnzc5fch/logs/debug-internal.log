@@ -1,0 +1,10 @@
+{"time":"2025-03-22T17:46:03.192765195+01:00","level":"INFO","msg":"stream: starting","core version":"0.19.8","symlink path":"/home/inside-tech/Desktop/image_segmentation/wandb/run-20250322_174603-dnzc5fch/logs/debug-core.log"}
+{"time":"2025-03-22T17:46:03.295847787+01:00","level":"INFO","msg":"created new stream","id":"dnzc5fch"}
+{"time":"2025-03-22T17:46:03.295904292+01:00","level":"INFO","msg":"stream: started","id":"dnzc5fch"}
+{"time":"2025-03-22T17:46:03.296023763+01:00","level":"INFO","msg":"writer: Do: started","stream_id":"dnzc5fch"}
+{"time":"2025-03-22T17:46:03.296048096+01:00","level":"INFO","msg":"handler: started","stream_id":"dnzc5fch"}
+{"time":"2025-03-22T17:46:03.296158735+01:00","level":"INFO","msg":"sender: started","stream_id":"dnzc5fch"}
+{"time":"2025-03-22T17:46:03.654893552+01:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-03-22T17:46:20.526508321+01:00","level":"INFO","msg":"Pausing system monitor"}
+{"time":"2025-03-22T17:46:20.530095536+01:00","level":"INFO","msg":"Resuming system monitor"}
+{"time":"2025-03-22T17:46:22.505159157+01:00","level":"INFO","msg":"Pausing system monitor"}

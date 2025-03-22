@@ -36,17 +36,9 @@ class SegmentationDataset(Dataset):
         
         # Ottieni la lista di tutti i file
         self.img_names = sorted([f for f in os.listdir(img_dir) if not f.startswith('.')])
+        print(f"Caricate {len(self.img_names)} immagini")
         
-        # Controlla che ci sia corrispondenza tra immagini e maschere
-        self.valid_indices = []
-        for i, img_name in enumerate(self.img_names):
-            mask_name = os.path.splitext(img_name)[0] + '.png'  # Presuppone maschere con estensione .png
-            mask_path = os.path.join(mask_dir, mask_name)
-            if os.path.exists(mask_path):
-                self.valid_indices.append(i)
-        
-        # Filtra solo i file validi
-        self.img_names = [self.img_names[i] for i in self.valid_indices]
+
         
         print(f"Dataset caricato: {len(self.img_names)} immagini con maschere corrispondenti")
     
@@ -58,29 +50,31 @@ class SegmentationDataset(Dataset):
         img_name = self.img_names[idx]
         img_path = os.path.join(self.img_dir, img_name)
         image = Image.open(img_path).convert('RGB')
-        
-        # Carica la maschera (presuppone stesso nome con estensione .png)
-        mask_name = os.path.splitext(img_name)[0] + '.png'
-        mask_path = os.path.join(self.mask_dir, mask_name)
-        mask = np.array(Image.open(mask_path).convert('RGB'))
-        
-        # Applica trasformazioni
+        mask = np.zeros((image.height, image.width), dtype=np.uint8)
+            
+        for class_idx in self.class_rgb_values.keys():
+            mask_name = os.path.splitext(img_name)[0] + f'_class{class_idx}.png'
+            mask_path = os.path.join(self.mask_dir, str(class_idx), mask_name)
+            if os.path.exists(mask_path):
+                class_mask = Image.open(mask_path).convert('L')
+                class_mask = np.array(class_mask)
+                mask[class_mask > 0] = class_idx
+
         if self.transform:
             image = self.transform(image)
-        
+
         if self.mask_transform:
             mask = self.mask_transform(mask)
         else:
-            mask = np.array(mask)
-            
-        # Converti la maschera RGB in mappa di classi
-        class_mask = self.convert_rgb_to_class(mask)
-        
+            mask = torch.tensor(mask, dtype=torch.long)
+
         return {
             'image': image,
-            'mask': torch.tensor(class_mask, dtype=torch.long),
+            'mask': mask,
             'image_name': img_name
         }
+        
+
     
     
 
