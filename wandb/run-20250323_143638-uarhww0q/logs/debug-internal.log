@@ -1,0 +1,12 @@
+{"time":"2025-03-23T14:36:38.658153873+01:00","level":"INFO","msg":"stream: starting","core version":"0.19.8","symlink path":"/home/inside-tech/Desktop/image_segmentation/wandb/run-20250323_143638-uarhww0q/logs/debug-core.log"}
+{"time":"2025-03-23T14:36:38.762807638+01:00","level":"INFO","msg":"created new stream","id":"uarhww0q"}
+{"time":"2025-03-23T14:36:38.762883514+01:00","level":"INFO","msg":"stream: started","id":"uarhww0q"}
+{"time":"2025-03-23T14:36:38.762953677+01:00","level":"INFO","msg":"writer: Do: started","stream_id":"uarhww0q"}
+{"time":"2025-03-23T14:36:38.763025198+01:00","level":"INFO","msg":"sender: started","stream_id":"uarhww0q"}
+{"time":"2025-03-23T14:36:38.763155601+01:00","level":"INFO","msg":"handler: started","stream_id":"uarhww0q"}
+{"time":"2025-03-23T14:36:39.051220792+01:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-03-23T14:36:47.251204031+01:00","level":"INFO","msg":"Pausing system monitor"}
+{"time":"2025-03-23T14:36:47.291889025+01:00","level":"INFO","msg":"Resuming system monitor"}
+{"time":"2025-03-23T14:36:51.457221423+01:00","level":"INFO","msg":"Pausing system monitor"}
+{"time":"2025-03-23T14:36:58.333201408+01:00","level":"INFO","msg":"Resuming system monitor"}
+{"time":"2025-03-23T14:37:01.096492545+01:00","level":"INFO","msg":"Pausing system monitor"}

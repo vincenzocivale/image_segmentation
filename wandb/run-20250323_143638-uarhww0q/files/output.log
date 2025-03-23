@@ -1,0 +1,20 @@
+Caricate 257 immagini
+Dataset caricato: 257 immagini con maschere corrispondenti
+Divisione dataset: 179 train, 26 validation, 52 test
+Caricate 257 immagini
+Dataset caricato: 257 immagini con maschere corrispondenti
+Caricate 257 immagini
+Dataset caricato: 257 immagini con maschere corrispondenti
+Caricate 257 immagini
+Dataset caricato: 257 immagini con maschere corrispondenti
+Struttura del modello (primi livelli):
+- model: <class 'transformers.models.mask2former.modeling_mask2former.Mask2FormerModel'>
+- class_predictor: <class 'torch.nn.modules.linear.Linear'>
+- criterion: <class 'transformers.models.mask2former.modeling_mask2former.Mask2FormerLoss'>
+Modificato class_predictor con 5 classi
+/home/inside-tech/Desktop/image_segmentation/.venv/lib/python3.12/site-packages/torch/optim/lr_scheduler.py:62: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn(
+Epoca 1/100 [Mask2Former - Train]:   0%|          | 0/23 [00:01<?, ?it/s]
+/home/inside-tech/Desktop/image_segmentation/.venv/lib/python3.12/site-packages/torch/optim/lr_scheduler.py:62: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn(
+Epoca 1/100 [Unknown - Train]:   0%|          | 0/23 [00:00<?, ?it/s]

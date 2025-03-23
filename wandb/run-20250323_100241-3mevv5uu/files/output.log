@@ -1,0 +1,10 @@
+Caricate 646 immagini
+Dataset caricato: 646 immagini con maschere corrispondenti
+Divisione dataset: 451 train, 65 validation, 130 test
+Caricate 646 immagini
+Dataset caricato: 646 immagini con maschere corrispondenti
+Some weights of Mask2FormerForUniversalSegmentation were not initialized from the model checkpoint at facebook/mask2former-swin-base-coco-instance and are newly initialized because the shapes did not match:
+- class_predictor.bias: found shape torch.Size([81]) in the checkpoint and torch.Size([5]) in the model instantiated
+- class_predictor.weight: found shape torch.Size([81, 256]) in the checkpoint and torch.Size([5, 256]) in the model instantiated
+- criterion.empty_weight: found shape torch.Size([81]) in the checkpoint and torch.Size([5]) in the model instantiated
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.

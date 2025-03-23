@@ -1,0 +1,60 @@
+2025-03-23 11:15:34,938 INFO    MainThread:535067 [wandb_init.py:setup_run_log_directory():647] Logging user logs to /home/inside-tech/Desktop/image_segmentation/wandb/run-20250323_111534-unt6hkt4/logs/debug.log
+2025-03-23 11:15:34,938 INFO    MainThread:535067 [wandb_init.py:setup_run_log_directory():648] Logging internal logs to /home/inside-tech/Desktop/image_segmentation/wandb/run-20250323_111534-unt6hkt4/logs/debug-internal.log
+2025-03-23 11:15:34,938 INFO    MainThread:535067 [wandb_init.py:init():761] calling init triggers
+2025-03-23 11:15:34,938 INFO    MainThread:535067 [wandb_init.py:init():766] wandb.init called with sweep_config: {}
+config: {'model': 'DeepLabV3_MobileNetV2', 'learning_rate': 0.0001, 'epochs': 100, 'batch_size': 8, 'weight_decay': 0.0001, 'optimizer': 'AdamW', 'scheduler': 'ReduceLROnPlateau', 'experiment_name': 'DeepLabV3_20250323_1115', '_wandb': {}}
+2025-03-23 11:15:34,938 INFO    MainThread:535067 [wandb_init.py:init():776] wandb.init() called while a run is active
+2025-03-23 11:15:34,938 INFO    MainThread:535067 [wandb_watch.py:_watch():71] Watching
+2025-03-23 11:24:40,964 INFO    MainThread:535067 [wandb_run.py:_finish():2112] finishing run vincenzo-civale-universi-degli-studi-di-firenze/CowSegmentation/f2dm66hm
+2025-03-23 11:24:40,964 ERROR   MainThread:535067 [jupyter.py:save_history():450] Run pip install nbformat to save notebook history
+2025-03-23 11:24:40,965 INFO    MainThread:535067 [jupyter.py:save_ipynb():386] not saving jupyter notebook
+2025-03-23 11:24:40,965 INFO    MainThread:535067 [wandb_init.py:_jupyter_teardown():581] cleaning up jupyter logic
+2025-03-23 11:24:40,965 INFO    MainThread:535067 [wandb_run.py:_atexit_cleanup():2340] got exitcode: 0
+2025-03-23 11:24:40,965 INFO    MainThread:535067 [wandb_run.py:_restore():2322] restore
+2025-03-23 11:24:40,965 INFO    MainThread:535067 [wandb_run.py:_restore():2328] restore done
+2025-03-23 11:24:43,119 INFO    MainThread:535067 [wandb_run.py:_footer_history_summary_info():3956] rendering history
+2025-03-23 11:24:43,119 INFO    MainThread:535067 [wandb_run.py:_footer_history_summary_info():3988] rendering summary
+2025-03-23 11:24:43,120 INFO    MainThread:535067 [wandb_run.py:_footer_sync_info():3917] logging synced files
+2025-03-23 11:41:05,537 INFO    MainThread:535067 [wandb_init.py:setup_run_log_directory():647] Logging user logs to /home/inside-tech/Desktop/image_segmentation/wandb/run-20250323_114105-yf9bbj3n/logs/debug.log
+2025-03-23 11:41:05,537 INFO    MainThread:535067 [wandb_init.py:setup_run_log_directory():648] Logging internal logs to /home/inside-tech/Desktop/image_segmentation/wandb/run-20250323_114105-yf9bbj3n/logs/debug-internal.log
+2025-03-23 11:41:05,537 INFO    MainThread:535067 [wandb_init.py:monkeypatch_ipython():599] configuring jupyter hooks <wandb.sdk.wandb_init._WandbInit object at 0x7df2e416a300>
+2025-03-23 11:41:05,537 INFO    MainThread:535067 [wandb_init.py:init():761] calling init triggers
+2025-03-23 11:41:05,537 INFO    MainThread:535067 [wandb_init.py:init():766] wandb.init called with sweep_config: {}
+config: {'_wandb': {}}
+2025-03-23 11:41:05,537 INFO    MainThread:535067 [wandb_init.py:init():784] starting backend
+2025-03-23 11:41:05,537 INFO    MainThread:535067 [wandb_init.py:init():788] sending inform_init request
+2025-03-23 11:41:05,537 INFO    MainThread:535067 [backend.py:_multiprocessing_setup():101] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2025-03-23 11:41:05,537 INFO    MainThread:535067 [wandb_init.py:init():798] backend started and connected
+2025-03-23 11:41:05,539 INFO    MainThread:535067 [wandb_run.py:_label_probe_notebook():1204] probe notebook
+2025-03-23 11:41:05,540 INFO    MainThread:535067 [wandb_init.py:init():891] updated telemetry
+2025-03-23 11:41:05,542 INFO    MainThread:535067 [wandb_init.py:init():915] communicating run to backend with 90.0 second timeout
+2025-03-23 11:41:05,939 INFO    MainThread:535067 [wandb_init.py:init():990] starting run threads in backend
+2025-03-23 11:41:06,012 INFO    MainThread:535067 [wandb_run.py:_console_start():2375] atexit reg
+2025-03-23 11:41:06,012 INFO    MainThread:535067 [wandb_run.py:_redirect():2227] redirect: wrap_raw
+2025-03-23 11:41:06,012 INFO    MainThread:535067 [wandb_run.py:_redirect():2292] Wrapping output streams.
+2025-03-23 11:41:06,012 INFO    MainThread:535067 [wandb_run.py:_redirect():2315] Redirects installed.
+2025-03-23 11:41:06,013 INFO    MainThread:535067 [wandb_init.py:init():1032] run started, returning control to user process
+2025-03-23 11:41:10,954 WARNING MsgRouterThr:535067 [router.py:message_loop():63] message_loop has been closed
+Traceback (most recent call last):
+  File "/home/inside-tech/Desktop/image_segmentation/.venv/lib/python3.12/site-packages/wandb/sdk/interface/router_sock.py", line 27, in _read_message
+    return self._sock_client.read_server_response(timeout=1)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/inside-tech/Desktop/image_segmentation/.venv/lib/python3.12/site-packages/wandb/sdk/lib/sock_client.py", line 235, in read_server_response
+    data = self._read_packet_bytes(timeout=timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/inside-tech/Desktop/image_segmentation/.venv/lib/python3.12/site-packages/wandb/sdk/lib/sock_client.py", line 220, in _read_packet_bytes
+    raise SockClientClosedError
+wandb.sdk.lib.sock_client.SockClientClosedError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/inside-tech/Desktop/image_segmentation/.venv/lib/python3.12/site-packages/wandb/sdk/interface/router.py", line 56, in message_loop
+    msg = self._read_message()
+          ^^^^^^^^^^^^^^^^^^^^
+  File "/home/inside-tech/Desktop/image_segmentation/.venv/lib/python3.12/site-packages/wandb/sdk/interface/router_sock.py", line 29, in _read_message
+    raise MessageRouterClosedError from e
+wandb.sdk.interface.router.MessageRouterClosedError
+2025-03-23 11:41:10,955 INFO    MsgRouterThr:535067 [mailbox.py:close():129] Closing mailbox, abandoning 2 handles.
+2025-03-23 11:41:11,081 INFO    MainThread:535067 [jupyter.py:save_ipynb():386] not saving jupyter notebook
+2025-03-23 11:41:11,081 INFO    MainThread:535067 [wandb_init.py:_pause_backend():564] pausing backend

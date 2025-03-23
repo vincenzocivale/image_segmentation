@@ -1,0 +1,6 @@
+Modello: DeepLabV3_MobileNetV2
+Timestamp: 20250323-1422
+IoU: 0.659207
+Dice: 0.757941
+Loss: 0.548822
+Miglior IoU in validation: 0.667919 (Epoca 31)

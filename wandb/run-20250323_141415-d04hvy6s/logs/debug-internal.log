@@ -1,0 +1,18 @@
+{"time":"2025-03-23T14:14:15.32255617+01:00","level":"INFO","msg":"stream: starting","core version":"0.19.8","symlink path":"/home/inside-tech/Desktop/image_segmentation/wandb/run-20250323_141415-d04hvy6s/logs/debug-core.log"}
+{"time":"2025-03-23T14:14:15.425345676+01:00","level":"INFO","msg":"created new stream","id":"d04hvy6s"}
+{"time":"2025-03-23T14:14:15.425397203+01:00","level":"INFO","msg":"stream: started","id":"d04hvy6s"}
+{"time":"2025-03-23T14:14:15.425509362+01:00","level":"INFO","msg":"writer: Do: started","stream_id":"d04hvy6s"}
+{"time":"2025-03-23T14:14:15.425600018+01:00","level":"INFO","msg":"sender: started","stream_id":"d04hvy6s"}
+{"time":"2025-03-23T14:14:15.425645071+01:00","level":"INFO","msg":"handler: started","stream_id":"d04hvy6s"}
+{"time":"2025-03-23T14:14:15.75849701+01:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-03-23T14:14:23.844466536+01:00","level":"INFO","msg":"Pausing system monitor"}
+{"time":"2025-03-23T14:14:23.884894477+01:00","level":"INFO","msg":"Resuming system monitor"}
+{"time":"2025-03-23T14:22:59.68374902+01:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-03-23T14:22:59.684022878+01:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-03-23T14:23:00.688087986+01:00","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"uploading wandb-summary.json","runtime_seconds":0.615699396,"progress":"604.4KB/604.4KB"}],"total_operations":1}}
+{"time":"2025-03-23T14:23:00.832484732+01:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-03-23T14:23:01.94585588+01:00","level":"INFO","msg":"stream: closing","id":"d04hvy6s"}
+{"time":"2025-03-23T14:23:01.945879057+01:00","level":"INFO","msg":"handler: closed","stream_id":"d04hvy6s"}
+{"time":"2025-03-23T14:23:01.945890818+01:00","level":"INFO","msg":"writer: Close: closed","stream_id":"d04hvy6s"}
+{"time":"2025-03-23T14:23:01.946001991+01:00","level":"INFO","msg":"sender: closed","stream_id":"d04hvy6s"}
+{"time":"2025-03-23T14:23:01.94603411+01:00","level":"INFO","msg":"stream: closed","id":"d04hvy6s"}

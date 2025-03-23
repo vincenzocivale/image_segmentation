@@ -1,0 +1,9 @@
+{"time":"2025-03-23T10:30:54.629887874+01:00","level":"INFO","msg":"stream: starting","core version":"0.19.8","symlink path":"/home/inside-tech/Desktop/image_segmentation/wandb/run-20250323_103054-f640dqui/logs/debug-core.log"}
+{"time":"2025-03-23T10:30:54.733612101+01:00","level":"INFO","msg":"created new stream","id":"f640dqui"}
+{"time":"2025-03-23T10:30:54.733666901+01:00","level":"INFO","msg":"stream: started","id":"f640dqui"}
+{"time":"2025-03-23T10:30:54.73381696+01:00","level":"INFO","msg":"writer: Do: started","stream_id":"f640dqui"}
+{"time":"2025-03-23T10:30:54.733837017+01:00","level":"INFO","msg":"handler: started","stream_id":"f640dqui"}
+{"time":"2025-03-23T10:30:54.733919767+01:00","level":"INFO","msg":"sender: started","stream_id":"f640dqui"}
+{"time":"2025-03-23T10:30:55.045572693+01:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-03-23T10:31:15.792836491+01:00","level":"INFO","msg":"Pausing system monitor"}
+{"time":"2025-03-23T10:31:15.83286493+01:00","level":"INFO","msg":"Resuming system monitor"}

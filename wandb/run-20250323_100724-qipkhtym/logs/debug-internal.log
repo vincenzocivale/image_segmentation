@@ -1,0 +1,10 @@
+{"time":"2025-03-23T10:07:24.759490172+01:00","level":"INFO","msg":"stream: starting","core version":"0.19.8","symlink path":"/home/inside-tech/Desktop/image_segmentation/wandb/run-20250323_100724-qipkhtym/logs/debug-core.log"}
+{"time":"2025-03-23T10:07:24.862952886+01:00","level":"INFO","msg":"created new stream","id":"qipkhtym"}
+{"time":"2025-03-23T10:07:24.863008426+01:00","level":"INFO","msg":"stream: started","id":"qipkhtym"}
+{"time":"2025-03-23T10:07:24.863070052+01:00","level":"INFO","msg":"writer: Do: started","stream_id":"qipkhtym"}
+{"time":"2025-03-23T10:07:24.863120243+01:00","level":"INFO","msg":"handler: started","stream_id":"qipkhtym"}
+{"time":"2025-03-23T10:07:24.863229765+01:00","level":"INFO","msg":"sender: started","stream_id":"qipkhtym"}
+{"time":"2025-03-23T10:07:25.210137205+01:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-03-23T10:07:45.674503016+01:00","level":"INFO","msg":"Pausing system monitor"}
+{"time":"2025-03-23T10:07:45.715149615+01:00","level":"INFO","msg":"Resuming system monitor"}
+{"time":"2025-03-23T10:07:50.240220681+01:00","level":"INFO","msg":"Pausing system monitor"}

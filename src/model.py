@@ -12,6 +12,10 @@ import torch.nn.functional as F
 from torch.cuda.amp import GradScaler, autocast
 import torchvision.models.segmentation as segmentation
 import torchvision
+import time
+from datetime import datetime
+import transformers
+from transformers import AutoModelForSemanticSegmentation, AutoConfig
 
 # Imposta seed per riproducibilità
 def set_seed(seed=42):
@@ -20,39 +24,6 @@ def set_seed(seed=42):
     torch.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)
     torch.backends.cudnn.deterministic = True
-
-# Definizione del modello SegFormer
-# class SegFormerModel(nn.Module):
-#     def __init__(self, num_classes, id2label=None, pretrained=True):
-#         super(SegFormerModel, self).__init__()
-        
-#         # Configura il mapping delle classi
-#         if id2label is None:
-#             id2label = {i: f"class_{i}" for i in range(num_classes)}
-#         label2id = {v: k for k, v in id2label.items()}
-        
-#         # Inizializza il modello
-#         if pretrained:
-#             # Utilizza un modello pre-addestrato
-#             self.segformer = SegformerForSemanticSegmentation.from_pretrained(
-#                 "nvidia/segformer-b0-finetuned-ade-512-512",
-#                 num_labels=num_classes,
-#                 id2label=id2label,
-#                 label2id=label2id,
-#                 ignore_mismatched_sizes=True
-#             )
-#         else:
-#             # Inizializza un modello da zero
-#             config = SegformerConfig(
-#                 num_labels=num_classes,
-#                 id2label=id2label,
-#                 label2id=label2id,
-#             )
-#             self.segformer = SegformerForSemanticSegmentation(config)
-    
-#     def forward(self, pixel_values):
-#         outputs = self.segformer(pixel_values=pixel_values)
-#         return outputs.logits
 
 class DeepLabV3_MobileNetV2(nn.Module):
     def __init__(self, num_classes):
@@ -64,6 +35,124 @@ class DeepLabV3_MobileNetV2(nn.Module):
     
     def forward(self, x):
         return self.model(x)['out']
+    
+    def get_model_name(self):
+        return "DeepLabV3_MobileNetV2"
+    
+class Mask2FormerModel(nn.Module):
+    def __init__(self, num_classes, pretrained=True):
+        super(Mask2FormerModel, self).__init__()
+        
+        # Inizializza il modello Mask2Former
+        if pretrained:
+            # Carica il modello pre-addestrato
+            self.model = transformers.Mask2FormerForUniversalSegmentation.from_pretrained(
+                "facebook/mask2former-swin-base-coco-instance",
+                ignore_mismatched_sizes=True
+            )
+            
+            # Modifica la configurazione per il numero di classi
+            self.model.config.num_labels = num_classes
+            
+            # Debug: stampa la struttura del modello per ispezione
+            print("Struttura del modello (primi livelli):")
+            for name, module in self.model.named_children():
+                print(f"- {name}: {type(module)}")
+            
+            # Adatta il modello al numero di classi desiderato
+            # Mask2Former ha una struttura specifica per la segmentazione
+            if hasattr(self.model, 'mask_classifier'):
+                # Se esiste un classificatore di maschere dedicato
+                in_features = self.model.mask_classifier.in_features
+                self.model.mask_classifier = nn.Linear(in_features, num_classes)
+                print(f"Modificato mask_classifier con {num_classes} classi")
+            elif hasattr(self.model, 'class_predictor'):
+                # Alcuni modelli usano un predittore di classe
+                self.model.class_predictor = nn.Linear(
+                    self.model.class_predictor.in_features, 
+                    num_classes
+                )
+                print(f"Modificato class_predictor con {num_classes} classi")
+        else:
+            # Inizializzazione da zero con configurazione personalizzata
+            config = transformers.Mask2FormerConfig(
+                num_labels=num_classes,
+                backbone="swin-tiny-patch4-window7-224"
+            )
+            self.model = transformers.Mask2FormerForUniversalSegmentation(config)
+    
+    def forward(self, pixel_values):
+        # Esegui il forward pass del modello
+        outputs = self.model(pixel_values=pixel_values)
+        
+        # Ispeziona l'output per debug (solo per il primo batch)
+        if not hasattr(self, '_debug_done'):
+            print("\nOutput keys disponibili:", [k for k in outputs.keys() if not k.startswith('_')])
+            self._debug_done = True
+        
+        # Gestisci i diversi tipi di output che Mask2Former potrebbe avere
+        if hasattr(outputs, 'masks_queries_logits'):
+            # Questa è l'output per segmentazione di istanze
+            # Qui dobbiamo processare ulteriormente per ottenere una mappa di segmentazione
+            # Per semplicità, prendiamo il massimo valore per ogni pixel
+            batch_size = outputs.masks_queries_logits.shape[0]
+            height, width = outputs.masks_queries_logits.shape[-2:]
+            
+            # Reshape e permute per ottenere [B, H, W, Q]
+            masks = outputs.masks_queries_logits.sigmoid().reshape(
+                batch_size, -1, height, width
+            )
+            
+            # Ora combiniamo con class_queries_logits [B, Q, C]
+            if hasattr(outputs, 'class_queries_logits'):
+                classes = outputs.class_queries_logits.softmax(dim=-1)
+                
+                # Creiamo una mappa di segmentazione completa [B, C, H, W]
+                segmentation = torch.zeros(
+                    batch_size, 
+                    self.model.config.num_labels, 
+                    height, 
+                    width, 
+                    device=masks.device
+                )
+                
+                # Per ogni query, aggiungiamo il suo contributo alla mappa di segmentazione
+                num_queries = masks.shape[1]
+                for i in range(num_queries):
+                    mask_i = masks[:, i].unsqueeze(1)  # [B, 1, H, W]
+                    class_i = classes[:, i].unsqueeze(-1).unsqueeze(-1)  # [B, C, 1, 1]
+                    contribution = mask_i * class_i  # [B, C, H, W]
+                    segmentation += contribution
+                
+                return segmentation
+            else:
+                # Fallback: restituisci solo le maschere
+                return masks
+        elif hasattr(outputs, 'segmentation_logits'):
+            # Questa è l'output per segmentazione semantica
+            return outputs.segmentation_logits
+        elif hasattr(outputs, 'logits'):
+            # Output generico
+            return outputs.logits
+        else:
+            # Se non troviamo attributi specifici, cerchiamo di identificare
+            # il tensore più promettente nell'output
+            for key in outputs.keys():
+                if key.startswith('_'):
+                    continue
+                value = outputs[key]
+                if isinstance(value, torch.Tensor) and len(value.shape) == 4:
+                    print(f"Usando l'output '{key}' con forma {value.shape}")
+                    return value
+            
+            # Se arriviamo qui, non siamo stati in grado di trovare un output adatto
+            raise ValueError(
+                "Non è stato possibile individuare un output valido nel modello Mask2Former. "
+                f"Output disponibili: {list(outputs.keys())}"
+            )
+    
+    def get_model_name(self):
+        return "Mask2Former"
 
 # Classe per la gestione del training
 class ModelTrainer:
@@ -77,7 +166,8 @@ class ModelTrainer:
                  learning_rate=1e-4,
                  weight_decay=1e-4,
                  project_name='segmentation',
-                 experiment_name='segformer'):
+                 experiment_name=None,
+                 max_checkpoints_to_keep=3):
         
         self.model = model.to(device)
         self.train_loader = train_loader
@@ -85,6 +175,17 @@ class ModelTrainer:
         self.test_loader = test_loader
         self.device = device
         self.class_weights = class_weights
+        self.max_checkpoints_to_keep = max_checkpoints_to_keep
+        
+        # Determina il nome del modello per i log
+        self.model_name = getattr(self.model, 'get_model_name', lambda: 'Unknown')()
+        
+        # Imposta automaticamente il nome dell'esperimento se non specificato
+        if experiment_name is None:
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M")
+            experiment_name = f"{self.model_name}_{timestamp}"
+        
+        self.experiment_name = experiment_name
         
         # Definizione loss function
         if class_weights is not None:
@@ -111,11 +212,13 @@ class ModelTrainer:
         
         # Nome del progetto e dell'esperimento
         self.project_name = project_name
-        self.experiment_name = experiment_name
         
         # Metriche
         self.best_val_iou = 0.0
         self.best_epoch = 0
+        
+        # Lista per tenere traccia dei checkpoint salvati
+        self.saved_checkpoints = []
         
     def check_mask_values(self, mask_tensor, num_classes):
         """Verifica che i valori della maschera siano validi"""
@@ -126,33 +229,64 @@ class ModelTrainer:
             raise ValueError(f"Valori della maschera fuori range: min={min_val}, max={max_val}, num_classes={num_classes}")
         
         return True
-    
         
-    def train(self, epochs=100, save_dir='checkpoints', log_interval=20):
-        # Inizializza Weights & Biases
-        wandb.init(project=self.project_name, name=self.experiment_name)
+    def train(self, epochs=100, save_dir='checkpoints', log_interval=20, improvement_threshold=0.005):
+        """
+        Addestra il modello
         
-        # Configura la directory per i checkpoints
-        os.makedirs(save_dir, exist_ok=True)
+        Args:
+            epochs: Numero di epoche di training
+            save_dir: Directory dove salvare i checkpoint
+            log_interval: Frequenza dei log visivi
+            improvement_threshold: Soglia di miglioramento per salvare un nuovo checkpoint
+                                  (percentuale di miglioramento necessaria)
+        """
+        # Crea una directory specifica per il modello
+        model_save_dir = os.path.join(save_dir, self.model_name)
+        os.makedirs(model_save_dir, exist_ok=True)
+        
+        # Inizializza Weights & Biases con configurazione espansa
+        wandb_config = {
+            "model": self.model_name,
+            "learning_rate": self.optimizer.param_groups[0]['lr'],
+            "epochs": epochs,
+            "batch_size": next(iter(self.train_loader))['image'].shape[0],
+            "weight_decay": self.optimizer.param_groups[0]['weight_decay'],
+            "optimizer": self.optimizer.__class__.__name__,
+            "scheduler": self.scheduler.__class__.__name__,
+            "experiment_name": self.experiment_name
+        }
+        
+        wandb.init(project=self.project_name, name=self.experiment_name, config=wandb_config)
+        
+        # Log delle architetture dei modelli (se disponibile)
+        try:
+            wandb.watch(self.model, log="all", log_freq=100)
+        except:
+            print("Non è stato possibile utilizzare wandb.watch su questo modello")
+        
+        # Tempo di inizio training
+        training_start_time = time.time()
         
         for epoch in range(epochs):
+            epoch_start_time = time.time()
             self.model.train()
             train_loss = 0.0
             train_iou = 0.0
             train_dice = 0.0
             
             # Progress bar per il training
-            train_pbar = tqdm(self.train_loader, desc=f"Epoch {epoch+1}/{epochs} [Train]")
+            train_pbar = tqdm(self.train_loader, desc=f"Epoca {epoch+1}/{epochs} [{self.model_name} - Train]")
             
             for batch_idx, batch in enumerate(train_pbar):
                 images = batch['image'].to(self.device)
                 masks = batch['mask'].to(self.device)
 
-                self.check_mask_values(masks, 4)
+                self.check_mask_values(masks, 5)
                 
                 self.optimizer.zero_grad()
                 
-                # Senza autocast
+                # Forward pass
                 outputs = self.model(images)
                 
                 if masks.shape[1:] != outputs.shape[2:]:
@@ -166,7 +300,7 @@ class ModelTrainer:
                     
                 loss = self.criterion(outputs, masks_resized)
                 
-                # Backward senza GradScaler
+                # Backward
                 loss.backward()
                 self.optimizer.step()
                 
@@ -180,17 +314,17 @@ class ModelTrainer:
                 
                 # Aggiorna la progress bar
                 train_pbar.set_postfix({
-                    'loss': loss.item(),
-                    'IoU': batch_iou,
-                    'Dice': batch_dice
+                    'loss': f"{loss.item():.4f}",
+                    'IoU': f"{batch_iou:.4f}",
+                    'Dice': f"{batch_dice:.4f}"
                 })
                 
                 # Log meno frequenti per risparmiare memoria
                 if batch_idx % 50 == 0:
                     wandb.log({
-                        'batch/train_loss': loss.item(),
-                        'batch/train_iou': batch_iou,
-                        'batch/train_dice': batch_dice,
+                        f'{self.model_name}/batch/train_loss': loss.item(),
+                        f'{self.model_name}/batch/train_iou': batch_iou,
+                        f'{self.model_name}/batch/train_dice': batch_dice,
                         'batch_step': epoch * len(self.train_loader) + batch_idx
                     })
                 
@@ -213,48 +347,96 @@ class ModelTrainer:
             # Aggiorna lo scheduler
             self.scheduler.step(val_loss)
             
+            # Calcola tempo trascorso per questa epoca
+            epoch_time = time.time() - epoch_start_time
+            total_time = time.time() - training_start_time
+            
             # Log su Weights & Biases (solo metriche essenziali)
             wandb.log({
                 'epoch': epoch + 1,
-                'epoch/train_loss': train_loss,
-                'epoch/train_iou': train_iou,
-                'epoch/val_loss': val_loss,
-                'epoch/val_iou': val_iou,
-                'learning_rate': self.optimizer.param_groups[0]['lr']
+                f'{self.model_name}/epoch/train_loss': train_loss,
+                f'{self.model_name}/epoch/train_iou': train_iou,
+                f'{self.model_name}/epoch/train_dice': train_dice,
+                f'{self.model_name}/epoch/val_loss': val_loss,
+                f'{self.model_name}/epoch/val_iou': val_iou,
+                f'{self.model_name}/epoch/val_dice': val_dice,
+                f'{self.model_name}/learning_rate': self.optimizer.param_groups[0]['lr'],
+                f'{self.model_name}/epoch_time_seconds': epoch_time,
+                f'{self.model_name}/total_time_minutes': total_time / 60
             })
             
-            # Salva il miglior modello
+            # Controlla se salvare il checkpoint
+            should_save = False
+            relative_improvement = 0
+            
             if val_iou > self.best_val_iou:
-                self.best_val_iou = val_iou
-                self.best_epoch = epoch + 1
+                relative_improvement = (val_iou - self.best_val_iou) / max(self.best_val_iou, 1e-5)
                 
-                # Verifica se l'attributo segformer esiste nel modello
-                if hasattr(self.model, 'segformer'):
-                    encoder_name = self.model.segformer.config.model_type
-                    num_classes = self.model.segformer.config.num_labels
-                else:
-                    encoder_name = "custom_model"
-                    num_classes = "unknown"
+                # Salva se è il miglior modello finora o se l'improvement è significativo
+                if relative_improvement > improvement_threshold or self.best_val_iou == 0.0:
+                    should_save = True
+                    self.best_val_iou = val_iou
+                    self.best_epoch = epoch + 1
+            
+            if should_save:
+                # Crea un nome significativo per il checkpoint
+                timestamp = datetime.now().strftime("%Y%m%d-%H%M")
+                checkpoint_filename = (
+                    f"{self.model_name}_"
+                    f"epoch{epoch+1}_"
+                    f"iou{val_iou:.4f}_"
+                    f"dice{val_dice:.4f}_"
+                    f"{timestamp}.pth"
+                )
+                checkpoint_path = os.path.join(model_save_dir, checkpoint_filename)
                 
-                checkpoint_filename = f"{self.experiment_name}_ep-{epoch+1}_iou-{val_iou:.4f}.pth"
-                checkpoint_path = os.path.join(save_dir, checkpoint_filename)
-                
-                # Salva solo le informazioni essenziali
+                # Salva informazioni complete
                 torch.save({
                     'epoch': epoch + 1,
                     'model_state_dict': self.model.state_dict(),
+                    'optimizer_state_dict': self.optimizer.state_dict(),
+                    'scheduler_state_dict': self.scheduler.state_dict(),
                     'val_iou': val_iou,
+                    'val_dice': val_dice,
+                    'val_loss': val_loss,
+                    'train_iou': train_iou,
+                    'train_dice': train_dice,
+                    'train_loss': train_loss,
+                    'model_name': self.model_name,
+                    'timestamp': timestamp,
                 }, checkpoint_path)
                 
-                print(f"Salvato il miglior modello con IoU: {val_iou:.4f}")
-            
-            # Stampa risultati dell'epoca
-            print(f"Epoch {epoch+1}/{epochs} - "
-                f"Train Loss: {train_loss:.4f}, IoU: {train_iou:.4f} | "
-                f"Val Loss: {val_loss:.4f}, IoU: {val_iou:.4f}")
+                # Aggiungi alla lista dei checkpoint salvati
+                self.saved_checkpoints.append(checkpoint_path)
+                
+                # Limita il numero di checkpoint
+                if len(self.saved_checkpoints) > self.max_checkpoints_to_keep:
+                    # Mantieni sempre il checkpoint migliore e quelli più recenti
+                    checkpoints_to_delete = sorted(
+                        self.saved_checkpoints[:-self.max_checkpoints_to_keep], 
+                        key=lambda x: os.path.getmtime(x)
+                    )
+                    
+                    for old_checkpoint in checkpoints_to_delete:
+                        if os.path.exists(old_checkpoint):
+                            os.remove(old_checkpoint)
+                            print(f"Rimosso vecchio checkpoint: {os.path.basename(old_checkpoint)}")
+                        
+                        self.saved_checkpoints.remove(old_checkpoint)
+                
+                print(f"Salvato modello - Epoca: {epoch+1}, IoU: {val_iou:.4f}, Miglioramento: {relative_improvement:.2%}")
             
             # Forza pulizia memoria
             torch.cuda.empty_cache()
+        
+        # Riepilogo finale
+        print("\n" + "="*50)
+        print(f"Training completato per {self.model_name}")
+        print(f"Miglior IoU: {self.best_val_iou:.4f} ottenuto all'epoca {self.best_epoch}")
+        print(f"Checkpoint salvati: {len(self.saved_checkpoints)}")
+        for i, ckpt in enumerate(self.saved_checkpoints):
+            print(f"  {i+1}. {os.path.basename(ckpt)}")
+        print("="*50)
         
         # Test finale se necessario
         if self.test_loader is not None:
@@ -262,6 +444,7 @@ class ModelTrainer:
         
         # Chiudi Weights & Biases
         wandb.finish()
+        
     def validate(self):
         """Valuta il modello sul set di validazione con gestione efficiente della memoria"""
         self.model.eval()
@@ -269,7 +452,7 @@ class ModelTrainer:
         val_iou = 0.0
         val_dice = 0.0
         
-        val_pbar = tqdm(self.val_loader, desc="Validation")
+        val_pbar = tqdm(self.val_loader, desc=f"Validazione [{self.model_name}]")
         
         with torch.no_grad():
             for batch_idx, batch in enumerate(val_pbar):
@@ -297,8 +480,8 @@ class ModelTrainer:
                 val_dice += batch_dice
                 
                 val_pbar.set_postfix({
-                    'loss': loss.item(),
-                    'IoU': batch_iou
+                    'loss': f"{loss.item():.4f}",
+                    'IoU': f"{batch_iou:.4f}"
                 })
                 
                 # Log solo del primo batch per risparmiare memoria
@@ -323,10 +506,10 @@ class ModelTrainer:
         test_iou = 0.0
         test_dice = 0.0
         
-        num_classes = self.model.segformer.config.num_labels
+        num_classes = 5
         conf_matrix = np.zeros((num_classes, num_classes))
         
-        test_pbar = tqdm(self.test_loader, desc="Test")
+        test_pbar = tqdm(self.test_loader, desc=f"Test [{self.model_name}]")
         
         with torch.no_grad():
             for batch_idx, batch in enumerate(test_pbar):
@@ -354,8 +537,8 @@ class ModelTrainer:
                 test_dice += batch_dice
                 
                 test_pbar.set_postfix({
-                    'loss': loss.item(),
-                    'IoU': batch_iou
+                    'loss': f"{loss.item():.4f}",
+                    'IoU': f"{batch_iou:.4f}"
                 })
                 
                 # Log meno frequente
@@ -371,14 +554,31 @@ class ModelTrainer:
         test_iou /= len(self.test_loader)
         test_dice /= len(self.test_loader)
         
-        # Log minimo su W&B
+        # Log con nome del modello
         wandb.log({
-            'test_loss': test_loss,
-            'test_iou': test_iou,
-            'test_dice': test_dice
+            f'{self.model_name}/test_loss': test_loss,
+            f'{self.model_name}/test_iou': test_iou,
+            f'{self.model_name}/test_dice': test_dice
         })
         
-        print(f"Test - Loss: {test_loss:.4f}, IoU: {test_iou:.4f}, Dice: {test_dice:.4f}")
+        print(f"Test [{self.model_name}] - Loss: {test_loss:.4f}, IoU: {test_iou:.4f}, Dice: {test_dice:.4f}")
+        
+        # Salva i risultati finali del test in un file
+        results_dir = os.path.join("results", self.model_name)
+        os.makedirs(results_dir, exist_ok=True)
+        
+        timestamp = datetime.now().strftime("%Y%m%d-%H%M")
+        results_file = os.path.join(results_dir, f"test_results_{timestamp}.txt")
+        
+        with open(results_file, 'w') as f:
+            f.write(f"Modello: {self.model_name}\n")
+            f.write(f"Timestamp: {timestamp}\n")
+            f.write(f"IoU: {test_iou:.6f}\n")
+            f.write(f"Dice: {test_dice:.6f}\n")
+            f.write(f"Loss: {test_loss:.6f}\n")
+            f.write(f"Miglior IoU in validation: {self.best_val_iou:.6f} (Epoca {self.best_epoch})\n")
+        
+        print(f"Risultati del test salvati in: {results_file}")
     
     def calculate_metrics(self, outputs, targets):
         """Calcola le metriche di segmentazione in modo efficiente per la memoria"""
@@ -472,17 +672,19 @@ class ModelTrainer:
             
             plt.tight_layout()
             
-            # Log a W&B
-            wandb.log({f"{phase}_prediction": wandb.Image(plt.gcf())})
+            # Log a W&B con nome del modello
+            wandb.log({f"{self.model_name}/{phase}_prediction": wandb.Image(plt.gcf())})
             plt.close()
         
         # Libera memoria
         del images_cpu, masks_cpu, outputs_cpu, preds
 
 # Funzione principale per training
-def train_segformer(train_loader, val_loader, test_loader=None, num_classes=4, 
+def train_model(train_loader, val_loader, test_loader=None, num_classes=4, 
                     epochs=50, learning_rate=1e-4, weight_decay=1e-4, 
-                    device='cuda', class_weights=None, pretrained=True):
+                    device='cuda', class_weights=None, pretrained=True,
+                    model_type="segformer", max_checkpoints=3,
+                    improvement_threshold=0.005):
     
     # Imposta seed per riproducibilità
     set_seed(42)
@@ -490,9 +692,22 @@ def train_segformer(train_loader, val_loader, test_loader=None, num_classes=4,
     # Definisci mapping id2label
     id2label = {i: f"class_{i}" for i in range(num_classes)}
     
-    # Crea il modello
-    # model = SegFormerModel(num_classes=num_classes, id2label=id2label, pretrained=pretrained)
-    model = DeepLabV3_MobileNetV2(num_classes=num_classes)
+    # Crea il modello in base al tipo specificato
+    if model_type.lower() == "segformer":
+        model = SegformerForSemanticSegmentation.from_pretrained("nvidia/segformer-b0-finetuned-ade-512-512").to(device)
+        model_name = "Segformer"
+    elif model_type.lower() == "deeplabv3":
+        model = DeepLabV3_MobileNetV2(num_classes=num_classes)
+        model_name = "DeepLabV3"
+    elif model_type.lower() == "mask2former":
+        model = Mask2FormerModel(num_classes=num_classes, pretrained=pretrained)
+        model_name = "Mask2Former"
+    else:
+        raise ValueError(f"Tipo di modello non supportato: {model_type}. Scegli tra 'segformer' o 'deeplabv3'")
+    
+    # Timestamp per nome esperimento
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M")
+    experiment_name = f"{model_name}_{timestamp}"
     
     # Configura il trainer
     trainer = ModelTrainer(
@@ -505,10 +720,15 @@ def train_segformer(train_loader, val_loader, test_loader=None, num_classes=4,
         learning_rate=learning_rate,
         weight_decay=weight_decay,
         project_name='segmentation',
-        experiment_name='segformer'
+        experiment_name=experiment_name,
+        max_checkpoints_to_keep=max_checkpoints
     )
     
     # Esegui il training
-    trainer.train(epochs=epochs, save_dir='checkpoints')
+    trainer.train(
+        epochs=epochs, 
+        save_dir='checkpoints',
+        improvement_threshold=improvement_threshold
+    )
     
     return model, trainer

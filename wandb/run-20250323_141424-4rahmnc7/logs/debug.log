@@ -1,0 +1,17 @@
+2025-03-23 14:14:24,626 INFO    MainThread:554771 [wandb_init.py:setup_run_log_directory():647] Logging user logs to /home/inside-tech/Desktop/image_segmentation/wandb/run-20250323_141424-4rahmnc7/logs/debug.log
+2025-03-23 14:14:24,626 INFO    MainThread:554771 [wandb_init.py:setup_run_log_directory():648] Logging internal logs to /home/inside-tech/Desktop/image_segmentation/wandb/run-20250323_141424-4rahmnc7/logs/debug-internal.log
+2025-03-23 14:14:24,626 INFO    MainThread:554771 [wandb_init.py:init():761] calling init triggers
+2025-03-23 14:14:24,626 INFO    MainThread:554771 [wandb_init.py:init():766] wandb.init called with sweep_config: {}
+config: {'model': 'DeepLabV3_MobileNetV2', 'learning_rate': 0.0001, 'epochs': 100, 'batch_size': 8, 'weight_decay': 0.0001, 'optimizer': 'AdamW', 'scheduler': 'ReduceLROnPlateau', 'experiment_name': 'DeepLabV3_20250323_1414', '_wandb': {}}
+2025-03-23 14:14:24,626 INFO    MainThread:554771 [wandb_init.py:init():776] wandb.init() called while a run is active
+2025-03-23 14:14:24,626 INFO    MainThread:554771 [wandb_watch.py:_watch():71] Watching
+2025-03-23 14:22:59,682 INFO    MainThread:554771 [wandb_run.py:_finish():2112] finishing run vincenzo-civale-universi-degli-studi-di-firenze/CowSegmentation/d04hvy6s
+2025-03-23 14:22:59,683 ERROR   MainThread:554771 [jupyter.py:save_history():450] Run pip install nbformat to save notebook history
+2025-03-23 14:22:59,683 INFO    MainThread:554771 [jupyter.py:save_ipynb():386] not saving jupyter notebook
+2025-03-23 14:22:59,683 INFO    MainThread:554771 [wandb_init.py:_jupyter_teardown():581] cleaning up jupyter logic
+2025-03-23 14:22:59,683 INFO    MainThread:554771 [wandb_run.py:_atexit_cleanup():2340] got exitcode: 0
+2025-03-23 14:22:59,683 INFO    MainThread:554771 [wandb_run.py:_restore():2322] restore
+2025-03-23 14:22:59,683 INFO    MainThread:554771 [wandb_run.py:_restore():2328] restore done
+2025-03-23 14:23:01,937 INFO    MainThread:554771 [wandb_run.py:_footer_history_summary_info():3956] rendering history
+2025-03-23 14:23:01,939 INFO    MainThread:554771 [wandb_run.py:_footer_history_summary_info():3988] rendering summary
+2025-03-23 14:23:01,941 INFO    MainThread:554771 [wandb_run.py:_footer_sync_info():3917] logging synced files

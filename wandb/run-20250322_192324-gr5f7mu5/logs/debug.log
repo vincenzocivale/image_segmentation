@@ -1,6 +1,0 @@
-2025-03-22 19:23:24,083 INFO    MainThread:494277 [wandb_init.py:setup_run_log_directory():647] Logging user logs to /home/inside-tech/Desktop/image_segmentation/wandb/run-20250322_192324-gr5f7mu5/logs/debug.log
-2025-03-22 19:23:24,083 INFO    MainThread:494277 [wandb_init.py:setup_run_log_directory():648] Logging internal logs to /home/inside-tech/Desktop/image_segmentation/wandb/run-20250322_192324-gr5f7mu5/logs/debug-internal.log
-2025-03-22 19:23:24,083 INFO    MainThread:494277 [wandb_init.py:init():761] calling init triggers
-2025-03-22 19:23:24,083 INFO    MainThread:494277 [wandb_init.py:init():766] wandb.init called with sweep_config: {}
-config: {'_wandb': {}}
-2025-03-22 19:23:24,083 INFO    MainThread:494277 [wandb_init.py:init():776] wandb.init() called while a run is active

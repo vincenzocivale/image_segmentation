@@ -1,0 +1,36 @@
+2025-03-23 10:07:24,757 INFO    MainThread:519552 [wandb_setup.py:_flush():67] Current SDK version is 0.19.8
+2025-03-23 10:07:24,757 INFO    MainThread:519552 [wandb_setup.py:_flush():67] Configure stats pid to 519552
+2025-03-23 10:07:24,757 INFO    MainThread:519552 [wandb_setup.py:_flush():67] Loading settings from /home/inside-tech/.config/wandb/settings
+2025-03-23 10:07:24,757 INFO    MainThread:519552 [wandb_setup.py:_flush():67] Loading settings from /home/inside-tech/Desktop/image_segmentation/wandb/settings
+2025-03-23 10:07:24,757 INFO    MainThread:519552 [wandb_setup.py:_flush():67] Loading settings from environment variables
+2025-03-23 10:07:24,757 INFO    MainThread:519552 [wandb_init.py:setup_run_log_directory():647] Logging user logs to /home/inside-tech/Desktop/image_segmentation/wandb/run-20250323_100724-qipkhtym/logs/debug.log
+2025-03-23 10:07:24,757 INFO    MainThread:519552 [wandb_init.py:setup_run_log_directory():648] Logging internal logs to /home/inside-tech/Desktop/image_segmentation/wandb/run-20250323_100724-qipkhtym/logs/debug-internal.log
+2025-03-23 10:07:24,757 INFO    MainThread:519552 [wandb_init.py:monkeypatch_ipython():599] configuring jupyter hooks <wandb.sdk.wandb_init._WandbInit object at 0x71efb8d8fbc0>
+2025-03-23 10:07:24,757 INFO    MainThread:519552 [wandb_init.py:init():761] calling init triggers
+2025-03-23 10:07:24,757 INFO    MainThread:519552 [wandb_init.py:init():766] wandb.init called with sweep_config: {}
+config: {'_wandb': {}}
+2025-03-23 10:07:24,757 INFO    MainThread:519552 [wandb_init.py:init():784] starting backend
+2025-03-23 10:07:24,757 INFO    MainThread:519552 [wandb_init.py:init():788] sending inform_init request
+2025-03-23 10:07:24,758 INFO    MainThread:519552 [backend.py:_multiprocessing_setup():101] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2025-03-23 10:07:24,758 INFO    MainThread:519552 [wandb_init.py:init():798] backend started and connected
+2025-03-23 10:07:24,759 INFO    MainThread:519552 [wandb_run.py:_label_probe_notebook():1204] probe notebook
+2025-03-23 10:07:24,759 INFO    MainThread:519552 [wandb_init.py:init():891] updated telemetry
+2025-03-23 10:07:24,761 INFO    MainThread:519552 [wandb_init.py:init():915] communicating run to backend with 90.0 second timeout
+2025-03-23 10:07:25,205 INFO    MainThread:519552 [wandb_init.py:init():990] starting run threads in backend
+2025-03-23 10:07:25,275 INFO    MainThread:519552 [wandb_run.py:_console_start():2375] atexit reg
+2025-03-23 10:07:25,275 INFO    MainThread:519552 [wandb_run.py:_redirect():2227] redirect: wrap_raw
+2025-03-23 10:07:25,275 INFO    MainThread:519552 [wandb_run.py:_redirect():2292] Wrapping output streams.
+2025-03-23 10:07:25,275 INFO    MainThread:519552 [wandb_run.py:_redirect():2315] Redirects installed.
+2025-03-23 10:07:25,276 INFO    MainThread:519552 [wandb_init.py:init():1032] run started, returning control to user process
+2025-03-23 10:07:45,674 INFO    MainThread:519552 [jupyter.py:save_ipynb():386] not saving jupyter notebook
+2025-03-23 10:07:45,674 INFO    MainThread:519552 [wandb_init.py:_pause_backend():564] pausing backend
+2025-03-23 10:07:45,678 INFO    MainThread:519552 [wandb_init.py:_resume_backend():569] resuming backend
+2025-03-23 10:07:48,248 INFO    MainThread:519552 [wandb_init.py:setup_run_log_directory():647] Logging user logs to /home/inside-tech/Desktop/image_segmentation/wandb/run-20250323_100748-r7ncklp4/logs/debug.log
+2025-03-23 10:07:48,249 INFO    MainThread:519552 [wandb_init.py:setup_run_log_directory():648] Logging internal logs to /home/inside-tech/Desktop/image_segmentation/wandb/run-20250323_100748-r7ncklp4/logs/debug-internal.log
+2025-03-23 10:07:48,249 INFO    MainThread:519552 [wandb_init.py:init():761] calling init triggers
+2025-03-23 10:07:48,249 INFO    MainThread:519552 [wandb_init.py:init():766] wandb.init called with sweep_config: {}
+config: {'model': 'Mask2Former', 'learning_rate': 0.0001, 'epochs': 100, 'batch_size': 8, 'weight_decay': 0.0001, 'optimizer': 'AdamW', 'scheduler': 'ReduceLROnPlateau', 'experiment_name': 'Mask2Former_20250323_1007', '_wandb': {}}
+2025-03-23 10:07:48,249 INFO    MainThread:519552 [wandb_init.py:init():776] wandb.init() called while a run is active
+2025-03-23 10:07:48,249 INFO    MainThread:519552 [wandb_watch.py:_watch():71] Watching
+2025-03-23 10:07:50,239 INFO    MainThread:519552 [jupyter.py:save_ipynb():386] not saving jupyter notebook
+2025-03-23 10:07:50,240 INFO    MainThread:519552 [wandb_init.py:_pause_backend():564] pausing backend

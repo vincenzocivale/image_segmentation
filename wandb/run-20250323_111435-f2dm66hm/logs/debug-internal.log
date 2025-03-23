@@ -1,0 +1,20 @@
+{"time":"2025-03-23T11:14:35.830213686+01:00","level":"INFO","msg":"stream: starting","core version":"0.19.8","symlink path":"/home/inside-tech/Desktop/image_segmentation/wandb/run-20250323_111435-f2dm66hm/logs/debug-core.log"}
+{"time":"2025-03-23T11:14:35.935613785+01:00","level":"INFO","msg":"created new stream","id":"f2dm66hm"}
+{"time":"2025-03-23T11:14:35.935668695+01:00","level":"INFO","msg":"stream: started","id":"f2dm66hm"}
+{"time":"2025-03-23T11:14:35.935722578+01:00","level":"INFO","msg":"writer: Do: started","stream_id":"f2dm66hm"}
+{"time":"2025-03-23T11:14:35.93580809+01:00","level":"INFO","msg":"handler: started","stream_id":"f2dm66hm"}
+{"time":"2025-03-23T11:14:35.935902803+01:00","level":"INFO","msg":"sender: started","stream_id":"f2dm66hm"}
+{"time":"2025-03-23T11:14:36.256146404+01:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-03-23T11:14:36.431485975+01:00","level":"INFO","msg":"Pausing system monitor"}
+{"time":"2025-03-23T11:15:19.964495541+01:00","level":"INFO","msg":"Resuming system monitor"}
+{"time":"2025-03-23T11:15:28.887601127+01:00","level":"INFO","msg":"Pausing system monitor"}
+{"time":"2025-03-23T11:15:34.107317379+01:00","level":"INFO","msg":"Resuming system monitor"}
+{"time":"2025-03-23T11:24:40.96558697+01:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-03-23T11:24:40.965894853+01:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-03-23T11:24:41.969703975+01:00","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"uploading wandb-summary.json","runtime_seconds":0.629349021,"progress":"607.7KB/607.7KB"}],"total_operations":1}}
+{"time":"2025-03-23T11:24:42.10167506+01:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-03-23T11:24:43.122327226+01:00","level":"INFO","msg":"stream: closing","id":"f2dm66hm"}
+{"time":"2025-03-23T11:24:43.122335087+01:00","level":"INFO","msg":"handler: closed","stream_id":"f2dm66hm"}
+{"time":"2025-03-23T11:24:43.122339214+01:00","level":"INFO","msg":"writer: Close: closed","stream_id":"f2dm66hm"}
+{"time":"2025-03-23T11:24:43.122343048+01:00","level":"INFO","msg":"sender: closed","stream_id":"f2dm66hm"}
+{"time":"2025-03-23T11:24:43.122368702+01:00","level":"INFO","msg":"stream: closed","id":"f2dm66hm"}

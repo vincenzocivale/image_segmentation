@@ -1,0 +1,643 @@
+Caricate 646 immagini
+Dataset caricato: 646 immagini con maschere corrispondenti
+Divisione dataset: 451 train, 65 validation, 130 test
+Caricate 646 immagini
+Dataset caricato: 646 immagini con maschere corrispondenti
+Caricate 257 immagini
+Dataset caricato: 257 immagini con maschere corrispondenti
+Divisione dataset: 179 train, 26 validation, 52 test
+Caricate 257 immagini
+Dataset caricato: 257 immagini con maschere corrispondenti
+/home/inside-tech/Desktop/image_segmentation/.venv/lib/python3.12/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/home/inside-tech/Desktop/image_segmentation/.venv/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+  warnings.warn(msg)
+/home/inside-tech/Desktop/image_segmentation/.venv/lib/python3.12/site-packages/torch/optim/lr_scheduler.py:62: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn(
+Epoca 1/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.13it/s, loss=1.1084, IoU=0.4961, Dice=0.6159]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.50it/s, loss=1.5541, IoU=0.2430]
+Salvato modello - Epoca: 1, IoU: 0.2316, Miglioramento: 2316441.44%
+Epoca 1/100 - DeepLabV3_MobileNetV2
+  Train Loss: 1.1020, IoU: 0.3761, Dice: 0.4741
+  Val Loss: 1.4222, IoU: 0.2316, Dice: 0.3535
+Epoca 2/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.65it/s, loss=0.6099, IoU=0.6354, Dice=0.7524]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.60it/s, loss=1.3839, IoU=0.3381]
+
+Salvato modello - Epoca: 2, IoU: 0.3796, Miglioramento: 63.87%
+Epoca 2/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.7517, IoU: 0.5581, Dice: 0.6761
+  Val Loss: 1.2618, IoU: 0.3796, Dice: 0.5098
+Epoca 3/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:03<00:00,  5.82it/s, loss=0.9198, IoU=0.5268, Dice=0.5964]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.60it/s, loss=1.2160, IoU=0.4675]
+
+Salvato modello - Epoca: 3, IoU: 0.5429, Miglioramento: 43.03%
+Epoca 3/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.6801, IoU: 0.5684, Dice: 0.6847
+  Val Loss: 1.1115, IoU: 0.5429, Dice: 0.6559
+Epoca 4/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.72it/s, loss=0.7059, IoU=0.5781, Dice=0.6975]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.64it/s, loss=1.0781, IoU=0.4382]
+
+Epoca 4/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.6016, IoU: 0.6086, Dice: 0.7250
+  Val Loss: 1.0155, IoU: 0.4584, Dice: 0.5602
+Epoca 5/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.72it/s, loss=0.5640, IoU=0.6237, Dice=0.7339]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.64it/s, loss=0.8562, IoU=0.5023]
+
+Rimosso vecchio checkpoint: DeepLabV3_MobileNetV2_epoch1_iou0.2316_dice0.3535_20250323-1115.pth
+Salvato modello - Epoca: 5, IoU: 0.5530, Miglioramento: 1.85%
+Epoca 5/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.5531, IoU: 0.6259, Dice: 0.7414
+  Val Loss: 0.8244, IoU: 0.5530, Dice: 0.6670
+Epoca 6/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:03<00:00,  5.85it/s, loss=0.6370, IoU=0.6773, Dice=0.7829]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.60it/s, loss=0.8773, IoU=0.5198]
+
+Rimosso vecchio checkpoint: DeepLabV3_MobileNetV2_epoch2_iou0.3796_dice0.5098_20250323-1115.pth
+Salvato modello - Epoca: 6, IoU: 0.5610, Miglioramento: 1.45%
+Epoca 6/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.5026, IoU: 0.6591, Dice: 0.7691
+  Val Loss: 0.8710, IoU: 0.5610, Dice: 0.6749
+Epoca 7/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.61it/s, loss=0.4966, IoU=0.7382, Dice=0.8362]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.63it/s, loss=0.7418, IoU=0.7094]
+
+Rimosso vecchio checkpoint: DeepLabV3_MobileNetV2_epoch3_iou0.5429_dice0.6559_20250323-1115.pth
+Salvato modello - Epoca: 7, IoU: 0.6239, Miglioramento: 11.22%
+Epoca 7/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.4628, IoU: 0.6820, Dice: 0.7887
+  Val Loss: 0.7751, IoU: 0.6239, Dice: 0.7353
+Epoca 8/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.57it/s, loss=0.4621, IoU=0.6843, Dice=0.7875]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.64it/s, loss=0.7618, IoU=0.6313]
+
+Epoca 8/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.4359, IoU: 0.6970, Dice: 0.8016
+  Val Loss: 0.7577, IoU: 0.6086, Dice: 0.7173
+Epoca 9/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.50it/s, loss=0.6702, IoU=0.5431, Dice=0.6453]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.57it/s, loss=0.6712, IoU=0.6033]
+
+Epoca 9/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.4197, IoU: 0.7053, Dice: 0.8085
+  Val Loss: 0.7167, IoU: 0.5760, Dice: 0.6919
+Epoca 10/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.63it/s, loss=0.3665, IoU=0.6042, Dice=0.6885]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.66it/s, loss=0.7212, IoU=0.6004]
+
+Epoca 10/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.3904, IoU: 0.7235, Dice: 0.8223
+  Val Loss: 0.7038, IoU: 0.6006, Dice: 0.7100
+Epoca 11/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.59it/s, loss=0.3204, IoU=0.7519, Dice=0.8439]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.66it/s, loss=0.6128, IoU=0.6378]
+
+Epoca 11/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.3721, IoU: 0.7447, Dice: 0.8401
+  Val Loss: 0.7358, IoU: 0.6055, Dice: 0.7161
+Epoca 12/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.45it/s, loss=0.5632, IoU=0.6443, Dice=0.7698]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.09it/s, loss=0.6016, IoU=0.6614]
+
+Epoca 12/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.3656, IoU: 0.7388, Dice: 0.8349
+  Val Loss: 0.6858, IoU: 0.6199, Dice: 0.7307
+Epoca 13/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.54it/s, loss=0.3687, IoU=0.7514, Dice=0.8468]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.67it/s, loss=0.6817, IoU=0.6776]
+
+Rimosso vecchio checkpoint: DeepLabV3_MobileNetV2_epoch5_iou0.5530_dice0.6670_20250323-1116.pth
+Salvato modello - Epoca: 13, IoU: 0.6306, Miglioramento: 1.06%
+Epoca 13/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.3385, IoU: 0.7605, Dice: 0.8516
+  Val Loss: 0.7577, IoU: 0.6306, Dice: 0.7359
+Epoca 14/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.49it/s, loss=0.3855, IoU=0.7935, Dice=0.8750]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.62it/s, loss=0.6720, IoU=0.6518]
+
+Epoca 14/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.3345, IoU: 0.7656, Dice: 0.8561
+  Val Loss: 0.7399, IoU: 0.6078, Dice: 0.7189
+Epoca 15/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.46it/s, loss=0.4143, IoU=0.6573, Dice=0.7511]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.58it/s, loss=0.7544, IoU=0.6547]
+
+Epoca 15/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.3143, IoU: 0.7675, Dice: 0.8560
+  Val Loss: 0.8026, IoU: 0.6208, Dice: 0.7249
+Epoca 16/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.42it/s, loss=0.4084, IoU=0.7208, Dice=0.8122]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.64it/s, loss=0.7646, IoU=0.6512]
+
+Epoca 16/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.3263, IoU: 0.7655, Dice: 0.8533
+  Val Loss: 0.7711, IoU: 0.6225, Dice: 0.7295
+Epoca 17/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.46it/s, loss=0.4381, IoU=0.6529, Dice=0.7642]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.56it/s, loss=0.6064, IoU=0.6799]
+
+Epoca 17/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.3046, IoU: 0.7750, Dice: 0.8620
+  Val Loss: 0.7286, IoU: 0.6265, Dice: 0.7350
+Epoca 18/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.46it/s, loss=0.3097, IoU=0.5855, Dice=0.6507]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.53it/s, loss=0.8298, IoU=0.6740]
+
+Epoca 18/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.3007, IoU: 0.7616, Dice: 0.8486
+  Val Loss: 0.8386, IoU: 0.6334, Dice: 0.7357
+Epoca 19/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.38it/s, loss=0.2629, IoU=0.7596, Dice=0.8449]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.46it/s, loss=0.6895, IoU=0.6995]
+
+Rimosso vecchio checkpoint: DeepLabV3_MobileNetV2_epoch6_iou0.5610_dice0.6749_20250323-1116.pth
+Salvato modello - Epoca: 19, IoU: 0.6390, Miglioramento: 1.34%
+Epoca 19/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2842, IoU: 0.7965, Dice: 0.8779
+  Val Loss: 0.7290, IoU: 0.6390, Dice: 0.7466
+Epoca 20/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.27it/s, loss=0.2988, IoU=0.8482, Dice=0.9147]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.38it/s, loss=0.7767, IoU=0.6709]
+
+Epoca 20/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2751, IoU: 0.8008, Dice: 0.8808
+  Val Loss: 0.7703, IoU: 0.6331, Dice: 0.7351
+Epoca 21/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.52it/s, loss=0.2576, IoU=0.7989, Dice=0.8819]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.59it/s, loss=0.8363, IoU=0.6613]
+
+Epoca 21/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2692, IoU: 0.7926, Dice: 0.8748
+  Val Loss: 0.8164, IoU: 0.6315, Dice: 0.7330
+Epoca 22/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.44it/s, loss=0.2318, IoU=0.7567, Dice=0.8482]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.58it/s, loss=0.6992, IoU=0.6881]
+
+Epoca 22/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2633, IoU: 0.8038, Dice: 0.8830
+  Val Loss: 0.7062, IoU: 0.6415, Dice: 0.7473
+Epoca 23/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.41it/s, loss=0.2690, IoU=0.7397, Dice=0.8316]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.53it/s, loss=0.7456, IoU=0.6698]
+
+Epoca 23/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2579, IoU: 0.8025, Dice: 0.8817
+  Val Loss: 0.8227, IoU: 0.6350, Dice: 0.7359
+Epoca 24/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.52it/s, loss=0.3312, IoU=0.7906, Dice=0.8675]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.49it/s, loss=0.7649, IoU=0.6680]
+
+Epoca 24/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2603, IoU: 0.8059, Dice: 0.8845
+  Val Loss: 0.7967, IoU: 0.6342, Dice: 0.7372
+Epoca 25/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.58it/s, loss=0.3590, IoU=0.7373, Dice=0.8291]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.53it/s, loss=0.7213, IoU=0.6829]
+
+Epoca 25/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2582, IoU: 0.8028, Dice: 0.8817
+  Val Loss: 0.7688, IoU: 0.6380, Dice: 0.7411
+Epoca 26/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.55it/s, loss=0.5906, IoU=0.6471, Dice=0.7847]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.32it/s, loss=0.7593, IoU=0.6758]
+
+Epoca 26/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2673, IoU: 0.8047, Dice: 0.8844
+  Val Loss: 0.8010, IoU: 0.6363, Dice: 0.7383
+Epoca 27/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.43it/s, loss=0.2654, IoU=0.8244, Dice=0.8953]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.54it/s, loss=0.8048, IoU=0.6659]
+
+Epoca 27/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2492, IoU: 0.8102, Dice: 0.8875
+  Val Loss: 0.8125, IoU: 0.6342, Dice: 0.7351
+Epoca 28/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.56it/s, loss=0.3399, IoU=0.7866, Dice=0.8672]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.52it/s, loss=0.7470, IoU=0.6888]
+
+Epoca 28/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2505, IoU: 0.8127, Dice: 0.8894
+  Val Loss: 0.7882, IoU: 0.6400, Dice: 0.7423
+Epoca 29/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.22it/s, loss=0.3256, IoU=0.8297, Dice=0.9018]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.56it/s, loss=0.7685, IoU=0.6777]
+
+Epoca 29/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2492, IoU: 0.8135, Dice: 0.8898
+  Val Loss: 0.8011, IoU: 0.6384, Dice: 0.7406
+Epoca 30/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.38it/s, loss=0.2045, IoU=0.8558, Dice=0.9173]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.52it/s, loss=0.7527, IoU=0.6932]
+
+Rimosso vecchio checkpoint: DeepLabV3_MobileNetV2_epoch7_iou0.6239_dice0.7353_20250323-1116.pth
+Salvato modello - Epoca: 30, IoU: 0.6439, Miglioramento: 0.75%
+Epoca 30/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2399, IoU: 0.8151, Dice: 0.8907
+  Val Loss: 0.7994, IoU: 0.6439, Dice: 0.7461
+Epoca 31/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.41it/s, loss=0.3698, IoU=0.7916, Dice=0.8748]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.49it/s, loss=0.7656, IoU=0.6863]
+
+Epoca 31/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2496, IoU: 0.8088, Dice: 0.8863
+  Val Loss: 0.8111, IoU: 0.6407, Dice: 0.7423
+Epoca 32/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.55it/s, loss=0.2893, IoU=0.7432, Dice=0.8321]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.50it/s, loss=0.7539, IoU=0.6888]
+
+Epoca 32/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2400, IoU: 0.8163, Dice: 0.8910
+  Val Loss: 0.8003, IoU: 0.6393, Dice: 0.7413
+Epoca 33/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.48it/s, loss=0.3223, IoU=0.8245, Dice=0.8976]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.50it/s, loss=0.7597, IoU=0.6900]
+
+Epoca 33/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2432, IoU: 0.8165, Dice: 0.8919
+  Val Loss: 0.8160, IoU: 0.6397, Dice: 0.7412
+Epoca 34/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.37it/s, loss=0.2447, IoU=0.8555, Dice=0.9184]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.49it/s, loss=0.7571, IoU=0.6817]
+
+Epoca 34/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2562, IoU: 0.8091, Dice: 0.8854
+  Val Loss: 0.8140, IoU: 0.6363, Dice: 0.7378
+Epoca 35/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.45it/s, loss=0.5488, IoU=0.5379, Dice=0.6431]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.49it/s, loss=0.7732, IoU=0.6838]
+
+Epoca 35/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2525, IoU: 0.8076, Dice: 0.8836
+  Val Loss: 0.8286, IoU: 0.6373, Dice: 0.7388
+Epoca 36/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.46it/s, loss=0.4063, IoU=0.7323, Dice=0.8336]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.48it/s, loss=0.7932, IoU=0.6793]
+
+Epoca 36/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2525, IoU: 0.8067, Dice: 0.8840
+  Val Loss: 0.8365, IoU: 0.6372, Dice: 0.7385
+Epoca 37/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.54it/s, loss=0.1990, IoU=0.6515, Dice=0.7035]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.47it/s, loss=0.7732, IoU=0.6852]
+
+Epoca 37/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2358, IoU: 0.8100, Dice: 0.8839
+  Val Loss: 0.8227, IoU: 0.6371, Dice: 0.7393
+Epoca 38/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.33it/s, loss=0.1700, IoU=0.8034, Dice=0.8781]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.49it/s, loss=0.7653, IoU=0.6862]
+
+Epoca 38/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2342, IoU: 0.8193, Dice: 0.8936
+  Val Loss: 0.8248, IoU: 0.6376, Dice: 0.7392
+Epoca 39/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.53it/s, loss=0.4259, IoU=0.7666, Dice=0.8527]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  2.77it/s, loss=0.7535, IoU=0.6869]
+
+Epoca 39/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2488, IoU: 0.8129, Dice: 0.8890
+  Val Loss: 0.8176, IoU: 0.6374, Dice: 0.7394
+Epoca 40/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.40it/s, loss=0.3517, IoU=0.8012, Dice=0.8828]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.48it/s, loss=0.7512, IoU=0.6883]
+
+Epoca 40/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2428, IoU: 0.8162, Dice: 0.8915
+  Val Loss: 0.8278, IoU: 0.6370, Dice: 0.7383
+Epoca 41/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.38it/s, loss=0.2601, IoU=0.8398, Dice=0.9089]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.47it/s, loss=0.7513, IoU=0.6893]
+
+Epoca 41/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2408, IoU: 0.8140, Dice: 0.8901
+  Val Loss: 0.8229, IoU: 0.6381, Dice: 0.7396
+Epoca 42/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.45it/s, loss=0.3399, IoU=0.8118, Dice=0.8924]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.47it/s, loss=0.7738, IoU=0.6842]
+
+Epoca 42/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2392, IoU: 0.8148, Dice: 0.8904
+  Val Loss: 0.8438, IoU: 0.6377, Dice: 0.7383
+Epoca 43/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.51it/s, loss=0.2703, IoU=0.7689, Dice=0.8548]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.45it/s, loss=0.7578, IoU=0.6886]
+
+Epoca 43/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2372, IoU: 0.8152, Dice: 0.8907
+  Val Loss: 0.8244, IoU: 0.6390, Dice: 0.7405
+Epoca 44/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.30it/s, loss=0.4666, IoU=0.8187, Dice=0.8947]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.42it/s, loss=0.7600, IoU=0.6851]
+
+Epoca 44/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2440, IoU: 0.8207, Dice: 0.8947
+  Val Loss: 0.8297, IoU: 0.6373, Dice: 0.7386
+Epoca 45/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.35it/s, loss=0.4648, IoU=0.7207, Dice=0.8263]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.44it/s, loss=0.7465, IoU=0.6866]
+
+Epoca 45/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2447, IoU: 0.8136, Dice: 0.8899
+  Val Loss: 0.8221, IoU: 0.6376, Dice: 0.7390
+Epoca 46/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.43it/s, loss=0.3230, IoU=0.7918, Dice=0.8780]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.46it/s, loss=0.7432, IoU=0.6862]
+
+Epoca 46/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2368, IoU: 0.8169, Dice: 0.8921
+  Val Loss: 0.8219, IoU: 0.6371, Dice: 0.7385
+Epoca 47/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.45it/s, loss=0.3444, IoU=0.7565, Dice=0.8512]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.45it/s, loss=0.7490, IoU=0.6868]
+
+Epoca 47/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2368, IoU: 0.8181, Dice: 0.8929
+  Val Loss: 0.8257, IoU: 0.6369, Dice: 0.7385
+Epoca 48/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.34it/s, loss=0.3231, IoU=0.6920, Dice=0.7805]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.45it/s, loss=0.7737, IoU=0.6798]
+
+Epoca 48/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2377, IoU: 0.8140, Dice: 0.8887
+  Val Loss: 0.8439, IoU: 0.6357, Dice: 0.7362
+Epoca 49/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.30it/s, loss=0.1739, IoU=0.7245, Dice=0.8033]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.43it/s, loss=0.7452, IoU=0.6852]
+
+Epoca 49/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2306, IoU: 0.8166, Dice: 0.8909
+  Val Loss: 0.8208, IoU: 0.6369, Dice: 0.7383
+Epoca 50/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.51it/s, loss=0.1567, IoU=0.6323, Dice=0.6694]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.44it/s, loss=0.7612, IoU=0.6823]
+
+Epoca 50/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2368, IoU: 0.8107, Dice: 0.8836
+  Val Loss: 0.8319, IoU: 0.6360, Dice: 0.7369
+Epoca 51/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.47it/s, loss=0.2929, IoU=0.7663, Dice=0.8566]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.44it/s, loss=0.7509, IoU=0.6828]
+
+Epoca 51/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2379, IoU: 0.8215, Dice: 0.8955
+  Val Loss: 0.8194, IoU: 0.6362, Dice: 0.7372
+Epoca 52/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.39it/s, loss=0.2435, IoU=0.8173, Dice=0.8923]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.38it/s, loss=0.7618, IoU=0.6824]
+
+Epoca 52/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2313, IoU: 0.8193, Dice: 0.8938
+  Val Loss: 0.8321, IoU: 0.6366, Dice: 0.7376
+Epoca 53/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.42it/s, loss=0.2124, IoU=0.8035, Dice=0.8792]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  2.64it/s, loss=0.7487, IoU=0.6862]
+
+Epoca 53/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2346, IoU: 0.8190, Dice: 0.8938
+  Val Loss: 0.8204, IoU: 0.6375, Dice: 0.7388
+Epoca 54/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.49it/s, loss=0.2611, IoU=0.7359, Dice=0.8177]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.42it/s, loss=0.7645, IoU=0.6852]
+
+Epoca 54/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2346, IoU: 0.8185, Dice: 0.8926
+  Val Loss: 0.8349, IoU: 0.6378, Dice: 0.7390
+Epoca 55/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.54it/s, loss=0.1897, IoU=0.9159, Dice=0.9547]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.39it/s, loss=0.7645, IoU=0.6833]
+
+Epoca 55/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2338, IoU: 0.8228, Dice: 0.8959
+  Val Loss: 0.8323, IoU: 0.6369, Dice: 0.7377
+Epoca 56/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.29it/s, loss=0.2912, IoU=0.7776, Dice=0.8671]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.38it/s, loss=0.7692, IoU=0.6816]
+
+Epoca 56/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2367, IoU: 0.8204, Dice: 0.8950
+  Val Loss: 0.8373, IoU: 0.6364, Dice: 0.7373
+Epoca 57/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.31it/s, loss=0.1723, IoU=0.7508, Dice=0.8282]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.40it/s, loss=0.7623, IoU=0.6844]
+
+Epoca 57/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2263, IoU: 0.8177, Dice: 0.8919
+  Val Loss: 0.8329, IoU: 0.6372, Dice: 0.7383
+Epoca 58/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.40it/s, loss=0.2896, IoU=0.8331, Dice=0.9037]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.40it/s, loss=0.7602, IoU=0.6828]
+
+Epoca 58/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2350, IoU: 0.8202, Dice: 0.8945
+  Val Loss: 0.8253, IoU: 0.6373, Dice: 0.7383
+Epoca 59/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.46it/s, loss=0.3288, IoU=0.8025, Dice=0.8836]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.39it/s, loss=0.7600, IoU=0.6836]
+
+Epoca 59/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2334, IoU: 0.8214, Dice: 0.8953
+  Val Loss: 0.8286, IoU: 0.6372, Dice: 0.7381
+Epoca 60/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.36it/s, loss=0.1985, IoU=0.8770, Dice=0.9326]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.39it/s, loss=0.7551, IoU=0.6851]
+
+Epoca 60/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2320, IoU: 0.8221, Dice: 0.8955
+  Val Loss: 0.8239, IoU: 0.6376, Dice: 0.7385
+Epoca 61/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.36it/s, loss=0.3942, IoU=0.7503, Dice=0.8461]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.38it/s, loss=0.7704, IoU=0.6826]
+
+Epoca 61/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2390, IoU: 0.8199, Dice: 0.8943
+  Val Loss: 0.8330, IoU: 0.6370, Dice: 0.7381
+Epoca 62/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.44it/s, loss=0.2318, IoU=0.7104, Dice=0.7953]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.39it/s, loss=0.7624, IoU=0.6880]
+
+Epoca 62/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2326, IoU: 0.8179, Dice: 0.8917
+  Val Loss: 0.8304, IoU: 0.6390, Dice: 0.7403
+Epoca 63/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.46it/s, loss=0.5849, IoU=0.4224, Dice=0.5025]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.15it/s, loss=0.7775, IoU=0.6815]
+
+Epoca 63/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2533, IoU: 0.8009, Dice: 0.8756
+  Val Loss: 0.8387, IoU: 0.6365, Dice: 0.7378
+Epoca 64/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.38it/s, loss=0.2910, IoU=0.8425, Dice=0.9129]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.39it/s, loss=0.7633, IoU=0.6843]
+
+Epoca 64/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2343, IoU: 0.8216, Dice: 0.8949
+  Val Loss: 0.8306, IoU: 0.6372, Dice: 0.7386
+Epoca 65/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.46it/s, loss=0.2821, IoU=0.8313, Dice=0.9028]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.38it/s, loss=0.7724, IoU=0.6802]
+
+Epoca 65/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2313, IoU: 0.8197, Dice: 0.8941
+  Val Loss: 0.8416, IoU: 0.6361, Dice: 0.7366
+Epoca 66/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.34it/s, loss=0.2739, IoU=0.8026, Dice=0.8778]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.37it/s, loss=0.7578, IoU=0.6841]
+
+Epoca 66/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2360, IoU: 0.8201, Dice: 0.8943
+  Val Loss: 0.8239, IoU: 0.6370, Dice: 0.7384
+Epoca 67/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.32it/s, loss=0.1671, IoU=0.8420, Dice=0.9087]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.36it/s, loss=0.7736, IoU=0.6811]
+
+Epoca 67/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2382, IoU: 0.8144, Dice: 0.8903
+  Val Loss: 0.8356, IoU: 0.6364, Dice: 0.7374
+Epoca 68/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.43it/s, loss=0.3041, IoU=0.8121, Dice=0.8934]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.38it/s, loss=0.7646, IoU=0.6826]
+
+Epoca 68/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2322, IoU: 0.8181, Dice: 0.8930
+  Val Loss: 0.8251, IoU: 0.6372, Dice: 0.7384
+Epoca 69/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.47it/s, loss=0.3225, IoU=0.7784, Dice=0.8623]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.36it/s, loss=0.7576, IoU=0.6857]
+
+Epoca 69/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2421, IoU: 0.8146, Dice: 0.8897
+  Val Loss: 0.8234, IoU: 0.6370, Dice: 0.7386
+Epoca 70/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  4.85it/s, loss=0.3688, IoU=0.8208, Dice=0.8960]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.41it/s, loss=0.7641, IoU=0.6834]
+
+Epoca 70/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2408, IoU: 0.8185, Dice: 0.8934
+  Val Loss: 0.8289, IoU: 0.6366, Dice: 0.7378
+Epoca 71/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.28it/s, loss=0.3743, IoU=0.7627, Dice=0.8498]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.37it/s, loss=0.7632, IoU=0.6827]
+
+Epoca 71/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2412, IoU: 0.8163, Dice: 0.8917
+  Val Loss: 0.8285, IoU: 0.6361, Dice: 0.7373
+Epoca 72/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.41it/s, loss=0.2090, IoU=0.7755, Dice=0.8548]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.35it/s, loss=0.7677, IoU=0.6823]
+
+Epoca 72/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2378, IoU: 0.8151, Dice: 0.8903
+  Val Loss: 0.8278, IoU: 0.6370, Dice: 0.7382
+Epoca 73/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.43it/s, loss=0.2704, IoU=0.8253, Dice=0.8974]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.35it/s, loss=0.7680, IoU=0.6827]
+
+Epoca 73/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2368, IoU: 0.8176, Dice: 0.8926
+  Val Loss: 0.8365, IoU: 0.6363, Dice: 0.7371
+Epoca 74/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.35it/s, loss=0.3047, IoU=0.8350, Dice=0.9059]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.34it/s, loss=0.7656, IoU=0.6819]
+
+Epoca 74/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2393, IoU: 0.8208, Dice: 0.8949
+  Val Loss: 0.8316, IoU: 0.6366, Dice: 0.7375
+Epoca 75/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.28it/s, loss=0.2768, IoU=0.7864, Dice=0.8707]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.34it/s, loss=0.7702, IoU=0.6821]
+
+Epoca 75/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2352, IoU: 0.8164, Dice: 0.8913
+  Val Loss: 0.8365, IoU: 0.6366, Dice: 0.7374
+Epoca 76/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.45it/s, loss=0.1487, IoU=0.8731, Dice=0.9306]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.34it/s, loss=0.7610, IoU=0.6855]
+
+Epoca 76/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2326, IoU: 0.8181, Dice: 0.8926
+  Val Loss: 0.8279, IoU: 0.6377, Dice: 0.7389
+Epoca 77/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.37it/s, loss=0.2317, IoU=0.8061, Dice=0.8833]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.34it/s, loss=0.7511, IoU=0.6853]
+
+Epoca 77/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2344, IoU: 0.8157, Dice: 0.8902
+  Val Loss: 0.8191, IoU: 0.6373, Dice: 0.7386
+Epoca 78/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.32it/s, loss=0.2663, IoU=0.8366, Dice=0.9039]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.33it/s, loss=0.7666, IoU=0.6815]
+
+Epoca 78/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2320, IoU: 0.8206, Dice: 0.8947
+  Val Loss: 0.8319, IoU: 0.6365, Dice: 0.7376
+Epoca 79/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.35it/s, loss=0.2421, IoU=0.8260, Dice=0.8988]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.33it/s, loss=0.7670, IoU=0.6824]
+
+Epoca 79/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2343, IoU: 0.8183, Dice: 0.8928
+  Val Loss: 0.8344, IoU: 0.6368, Dice: 0.7379
+Epoca 80/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.42it/s, loss=0.2502, IoU=0.7481, Dice=0.8293]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.34it/s, loss=0.7510, IoU=0.6854]
+
+Epoca 80/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2330, IoU: 0.8211, Dice: 0.8945
+  Val Loss: 0.8205, IoU: 0.6370, Dice: 0.7383
+Epoca 81/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.40it/s, loss=0.1589, IoU=0.7850, Dice=0.8597]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.33it/s, loss=0.7596, IoU=0.6871]
+
+Epoca 81/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2312, IoU: 0.8164, Dice: 0.8914
+  Val Loss: 0.8279, IoU: 0.6382, Dice: 0.7396
+Epoca 82/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.28it/s, loss=0.2759, IoU=0.7337, Dice=0.8313]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.32it/s, loss=0.7647, IoU=0.6853]
+
+Epoca 82/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2342, IoU: 0.8173, Dice: 0.8922
+  Val Loss: 0.8296, IoU: 0.6377, Dice: 0.7389
+Epoca 83/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.30it/s, loss=0.1947, IoU=0.8034, Dice=0.8743]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.33it/s, loss=0.7523, IoU=0.6861]
+
+Epoca 83/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2317, IoU: 0.8198, Dice: 0.8939
+  Val Loss: 0.8232, IoU: 0.6373, Dice: 0.7384
+Epoca 84/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.42it/s, loss=0.2137, IoU=0.8271, Dice=0.8981]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.33it/s, loss=0.7641, IoU=0.6819]
+
+Epoca 84/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2338, IoU: 0.8201, Dice: 0.8941
+  Val Loss: 0.8315, IoU: 0.6364, Dice: 0.7372
+Epoca 85/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.39it/s, loss=0.2349, IoU=0.8381, Dice=0.9065]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.32it/s, loss=0.7575, IoU=0.6853]
+
+Epoca 85/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2315, IoU: 0.8193, Dice: 0.8938
+  Val Loss: 0.8270, IoU: 0.6373, Dice: 0.7384
+Epoca 86/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.32it/s, loss=0.2487, IoU=0.7158, Dice=0.7973]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.30it/s, loss=0.7675, IoU=0.6841]
+
+Epoca 86/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2343, IoU: 0.8191, Dice: 0.8924
+  Val Loss: 0.8354, IoU: 0.6372, Dice: 0.7381
+Epoca 87/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.34it/s, loss=0.2565, IoU=0.7628, Dice=0.8434]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.31it/s, loss=0.7530, IoU=0.6875]
+
+Epoca 87/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2317, IoU: 0.8183, Dice: 0.8925
+  Val Loss: 0.8174, IoU: 0.6383, Dice: 0.7399
+Epoca 88/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.42it/s, loss=0.3669, IoU=0.8351, Dice=0.9064]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.30it/s, loss=0.7624, IoU=0.6851]
+
+Epoca 88/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2396, IoU: 0.8200, Dice: 0.8944
+  Val Loss: 0.8275, IoU: 0.6377, Dice: 0.7389
+Epoca 89/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.39it/s, loss=0.2175, IoU=0.8354, Dice=0.9063]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.06it/s, loss=0.7653, IoU=0.6837]
+
+Epoca 89/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2329, IoU: 0.8212, Dice: 0.8954
+  Val Loss: 0.8314, IoU: 0.6372, Dice: 0.7380
+Epoca 90/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.39it/s, loss=0.1468, IoU=0.8522, Dice=0.9141]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.29it/s, loss=0.7609, IoU=0.6849]
+
+Epoca 90/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2347, IoU: 0.8213, Dice: 0.8950
+  Val Loss: 0.8304, IoU: 0.6368, Dice: 0.7378
+Epoca 91/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  4.82it/s, loss=0.3184, IoU=0.7914, Dice=0.8746]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.36it/s, loss=0.7655, IoU=0.6827]
+
+Epoca 91/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2377, IoU: 0.8171, Dice: 0.8915
+  Val Loss: 0.8359, IoU: 0.6366, Dice: 0.7374
+Epoca 92/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.31it/s, loss=0.2988, IoU=0.8166, Dice=0.8965]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.26it/s, loss=0.7640, IoU=0.6840]
+
+Epoca 92/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2407, IoU: 0.8158, Dice: 0.8911
+  Val Loss: 0.8302, IoU: 0.6374, Dice: 0.7383
+Epoca 93/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.25it/s, loss=0.3758, IoU=0.8147, Dice=0.8921]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.27it/s, loss=0.7659, IoU=0.6823]
+
+Epoca 93/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2410, IoU: 0.8166, Dice: 0.8920
+  Val Loss: 0.8377, IoU: 0.6365, Dice: 0.7369
+Epoca 94/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.38it/s, loss=0.3998, IoU=0.7834, Dice=0.8702]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.01it/s, loss=0.7685, IoU=0.6829]
+
+Epoca 94/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2374, IoU: 0.8204, Dice: 0.8943
+  Val Loss: 0.8387, IoU: 0.6370, Dice: 0.7376
+Epoca 95/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.35it/s, loss=0.3100, IoU=0.7498, Dice=0.8456]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.27it/s, loss=0.7663, IoU=0.6851]
+
+Epoca 95/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2327, IoU: 0.8198, Dice: 0.8937
+  Val Loss: 0.8341, IoU: 0.6384, Dice: 0.7394
+Epoca 96/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.27it/s, loss=0.3018, IoU=0.8523, Dice=0.9169]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.25it/s, loss=0.7697, IoU=0.6841]
+
+Epoca 96/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2380, IoU: 0.8192, Dice: 0.8937
+  Val Loss: 0.8406, IoU: 0.6375, Dice: 0.7382
+Epoca 97/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.21it/s, loss=0.1895, IoU=0.8422, Dice=0.9054]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.24it/s, loss=0.7608, IoU=0.6857]
+
+Epoca 97/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2306, IoU: 0.8212, Dice: 0.8950
+  Val Loss: 0.8308, IoU: 0.6376, Dice: 0.7386
+Epoca 98/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.35it/s, loss=0.1994, IoU=0.7436, Dice=0.8255]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.28it/s, loss=0.7767, IoU=0.6807]
+
+Epoca 98/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2361, IoU: 0.8170, Dice: 0.8913
+  Val Loss: 0.8468, IoU: 0.6361, Dice: 0.7368
+Epoca 99/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.32it/s, loss=0.2286, IoU=0.8153, Dice=0.8912]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  3.22it/s, loss=0.7622, IoU=0.6841]
+
+Epoca 99/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2349, IoU: 0.8216, Dice: 0.8953
+  Val Loss: 0.8293, IoU: 0.6377, Dice: 0.7385
+Epoca 100/100 [DeepLabV3_MobileNetV2 - Train]: 100%|██████████| 23/23 [00:04<00:00,  5.28it/s, loss=0.2703, IoU=0.8250, Dice=0.8998]
+Validazione [DeepLabV3_MobileNetV2]: 100%|██████████| 4/4 [00:01<00:00,  2.92it/s, loss=0.7611, IoU=0.6846]
+
+Epoca 100/100 - DeepLabV3_MobileNetV2
+  Train Loss: 0.2343, IoU: 0.8198, Dice: 0.8942
+  Val Loss: 0.8310, IoU: 0.6375, Dice: 0.7384
+
+
+==================================================
+Training completato per DeepLabV3_MobileNetV2
+Miglior IoU: 0.6439 ottenuto all'epoca 30
+Checkpoint salvati: 3
+  1. DeepLabV3_MobileNetV2_epoch13_iou0.6306_dice0.7359_20250323-1116.pth
+  2. DeepLabV3_MobileNetV2_epoch19_iou0.6390_dice0.7466_20250323-1117.pth
+  3. DeepLabV3_MobileNetV2_epoch30_iou0.6439_dice0.7461_20250323-1118.pth
+==================================================
+Test [DeepLabV3_MobileNetV2]: 100%|██████████| 7/7 [00:01<00:00,  5.12it/s, loss=0.6481, IoU=0.6169]
+Test [DeepLabV3_MobileNetV2] - Loss: 0.7082, IoU: 0.6665, Dice: 0.7612
+Risultati del test salvati in: results/DeepLabV3_MobileNetV2/test_results_20250323-1124.txt
